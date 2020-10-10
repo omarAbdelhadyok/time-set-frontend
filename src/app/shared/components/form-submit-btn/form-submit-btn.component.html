@@ -1,0 +1,8 @@
+<button class="app-btn"
+	type="submit"
+	[disabled]="formInvalid || isLoading">
+	{{btnLable}}
+	<i class="i-spinner9"
+		*ngIf="isLoading">
+	</i>
+</button>

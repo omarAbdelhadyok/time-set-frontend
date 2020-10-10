@@ -6,21 +6,17 @@ import { AppComponent } from './app.component';
 import { GeneralModule } from './general/general.module';
 import { HomeModule } from './home/home.module';
 import { CoreModule } from './core/core.module';
-import { AuthModule } from './auth/auth.module';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule,
-	AppRoutingModule,
-	GeneralModule,
-	HomeModule,
-	CoreModule,
-	AuthModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+	declarations: [AppComponent],
+	imports: [
+		BrowserModule,
+		GeneralModule,
+		HomeModule,
+		CoreModule,
+		AppRoutingModule
+	],
+	providers: [],
+	bootstrap: [AppComponent]
 })
 export class AppModule { }

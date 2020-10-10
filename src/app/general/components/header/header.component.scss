@@ -1,7 +1,11 @@
+@import './../../../../assets/scss/variables.scss';
+
 header {
-	background-color: #1F618D;
+	background-color: $primary-color;
 
 	.nav {
+		height: 60px;
+		
 		.nav-links-container {
 			display: flex;
 			align-items: center;

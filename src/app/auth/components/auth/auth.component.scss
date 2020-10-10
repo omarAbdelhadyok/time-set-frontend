@@ -1,5 +1,39 @@
-.login-container {
-	display: flex;
-	justify-content: center;
-	align-items: center;
+@import './../../../../assets/scss/variables.scss';
+
+$header-margin: 45px;
+$header-switch-height: 40px;
+$body-height: calc(100% - #{$header-switch-height});
+
+.auth-container {
+	text-align: center;
+	height: calc(100vh - #{$header-margin});
+	background: url('./../../../../assets/images/sign-in-bg.svg') no-repeat top;
+	background-size: cover;
+
+	.white-layer {
+		width: 100%;
+		height: 100%;
+		background-color: rgba(255, 255, 255, 0.9);
+
+		.auth-header {
+			margin: $header-margin 0 $header-margin 0;
+	
+			.logo {
+				color: $primary-color;
+			}
+		}
+	
+		.auth-box {
+			background-color: #FFF;
+			max-width: 400px;
+			margin: 0 auto;
+			border-radius: 3px;
+			padding: 25px 40px;
+			box-shadow: rgba(0,0,0,0.1) 0 0 10px;
+	
+			.body {
+				height: $body-height;
+			}
+		}
+	}
 }

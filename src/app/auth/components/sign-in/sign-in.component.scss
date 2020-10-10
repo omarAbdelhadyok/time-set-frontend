@@ -1,0 +1,16 @@
+@import './../../../../assets/scss/variables.scss';
+
+.sign-in-form {
+	.heading {
+		color: #777;
+	}
+
+	.create-acc-link {
+		color: $primary-color;
+		cursor: pointer;
+
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+}
