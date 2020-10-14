@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { FormSubmitBtnComponent } from './components';
+import { FormSubmitBtnComponent, AppInputComponent } from './components';
 
 const MODULES = [FormsModule, ReactiveFormsModule];
-const COMPONENTS = [FormSubmitBtnComponent];
+const COMPONENTS = [FormSubmitBtnComponent, AppInputComponent];
 
 @NgModule({
   declarations: [...COMPONENTS],

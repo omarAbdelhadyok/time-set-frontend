@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthComponent, SignInComponent } from './components';
+import { AuthComponent, SignInComponent, RegisterComponent } from './components';
 
 const routes: Routes = [
 	{
@@ -9,6 +9,7 @@ const routes: Routes = [
 		children: [
 			{path: '', redirectTo: 'sign-in', pathMatch: 'full'},
 			{path: 'sign-in', component: SignInComponent},
+			{path: 'register', component: RegisterComponent},
 		]
 	}
 ];

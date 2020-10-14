@@ -24,7 +24,7 @@ export class SignInComponent implements OnInit {
 
 	createForm(): void {
 		this.signInForm = this.fb.group({
-			usernameOrEmail: ['', Validators.required],
+			usernameOrEmail: ['', [Validators.required, Validators.minLength(20)]],
 			password: ['', Validators.required]
 		})
 	}
@@ -34,15 +34,16 @@ export class SignInComponent implements OnInit {
 			this.notifier.errorMessage('errors.fillForm');
 			return;
 		}
-		this.isLoading = true;
-		let credentials = new SignInCredentials(this.signInForm.value);
-		this.authService.signIn(credentials).subscribe((signInToken: SignInResponse) => {
-			this.isLoading = false;
-			this.authService.storeToken(signInToken.accessToken);
-		}, err => {
-			this.isLoading = false;
-			this.notifier.errorMessage(err);
-		})
+		console.log(this.signInForm)
+		// this.isLoading = true;
+		// let credentials = new SignInCredentials(this.signInForm.value);
+		// this.authService.signIn(credentials).subscribe((signInToken: SignInResponse) => {
+		// 	this.isLoading = false;
+		// 	this.authService.storeToken(signInToken.accessToken);
+		// }, err => {
+		// 	this.isLoading = false;
+		// 	this.notifier.errorMessage(err);
+		// })
 	}
 
 }

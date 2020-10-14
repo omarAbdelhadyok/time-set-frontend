@@ -1,0 +1,7 @@
+<input [type]="type"
+	[placeholder]="placeholder"
+	[formControl]="control">
+
+<span *ngIf="checkRequired()">Error</span>
+
+<span *ngIf="checkMinLength()">Length Error</span>
