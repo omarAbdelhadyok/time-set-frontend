@@ -3,15 +3,15 @@
 	(ngSubmit)="signIn()">
 	<h3 class="heading">Sign in</h3>
 
-	<app-input 
-		formControlName="usernameOrEmail"
+	<app-input formControlName="usernameOrEmail"
 		placeholder="Username or email">
 	</app-input>
 
-	<input class="mt-3"
+	<app-input class="d-block mt-3"
 		type="password"
 		formControlName="password"
 		placeholder="Password">
+	</app-input>
 
 	<div class="mt-4">
 		<form-submit-btn btnLable="Sign In"

@@ -8,7 +8,8 @@ const COMPONENTS = [HeaderComponent]
 @NgModule({
   declarations: [...COMPONENTS],
   imports: [
-    CommonModule
+	CommonModule,
+	SharedModule
   ],
   exports: [...COMPONENTS]
 })

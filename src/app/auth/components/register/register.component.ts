@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NotifierService } from 'src/app/core/services';
+import { PasswordMatchingValidator } from 'src/app/shared/custom-validators';
 import { User } from 'src/app/user/models';
-import { SignInResponse } from '../../models';
-import { AuthService } from '../../services';
+import { SignInResponse } from 'src/app/auth/models';
+import { AuthService } from 'src/app/auth/services';
 
 @Component({
 	selector: 'app-register',
@@ -30,8 +31,9 @@ export class RegisterComponent implements OnInit {
 			username: ['', Validators.required],
 			email: ['', Validators.required],
 			password: ['', Validators.required],
+			confirmPassword: ['', Validators.required],
 			mobile: ['']
-		})
+		}, PasswordMatchingValidator('password', 'confirmPassword'));
 	}
 
 	register() {
