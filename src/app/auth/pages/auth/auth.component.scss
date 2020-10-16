@@ -35,5 +35,17 @@ $body-height: calc(100% - #{$header-switch-height});
 				height: $body-height;
 			}
 		}
+
+		.translation-select {
+			select {
+				width: 120px;
+				height: 35px;
+				border: 1px solid #DDD;
+				color: #777;
+				padding: 5px;
+				outline: none;
+				cursor: pointer;
+			}
+		}
 	}
 }

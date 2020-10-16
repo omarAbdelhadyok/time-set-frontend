@@ -1,7 +1,7 @@
 <form class="sign-in-form"
 	[formGroup]="signInForm"
 	(ngSubmit)="signIn()">
-	<h3 class="heading">Sign in</h3>
+	<h3 class="heading">{{"labels.signin" | translate}}</h3>
 
 	<app-input formControlName="usernameOrEmail"
 		placeholder="Username or email">
@@ -25,3 +25,5 @@
 		<a class="create-acc-link">Don't have an account ye? Create one</a>
 	</div>
 </form>
+
+<!-- ----------------------------------------------------- TRANSLATION ABSTRACTION SERVICE ------------------------------------------------------------------------------------------------------------------------------- -->
