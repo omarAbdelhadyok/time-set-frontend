@@ -34,6 +34,10 @@ input, textarea {
 	}
 }
 
+app-input {
+	display: block;
+}
+
 .input-error {
 	border: 2px solid $danger-color;
 

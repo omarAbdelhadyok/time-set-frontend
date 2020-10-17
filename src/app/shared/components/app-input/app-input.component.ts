@@ -1,6 +1,5 @@
 import { Component, forwardRef, Input, ViewChild } from '@angular/core';
-import { AbstractControl, ControlContainer, ControlValueAccessor, FormControl, FormControlDirective, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { TranslateService } from '@ngx-translate/core';
+import { AbstractControl, ControlContainer, ControlValueAccessor, FormControlDirective, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
 	selector: 'app-input',
@@ -27,8 +26,7 @@ export class AppInputComponent implements ControlValueAccessor {
 		return this.controlContainer.control.get(this.formControlName);
 	}
 
-	constructor(public controlContainer: ControlContainer,
-		public translate: TranslateService) {}
+	constructor(public controlContainer: ControlContainer) {}
 
 	registerOnTouched(fn: any): void {
 		this.formControlDirective.valueAccessor.registerOnTouched(fn);
@@ -64,6 +62,9 @@ export class AppInputComponent implements ControlValueAccessor {
 	}
 	checkMax() {
 		return this.getControl().errors?.max && this.checkDirtyAndTouched();
+	}
+	checkNotMatching() {
+		return this.getControl().errors?.notmatching && this.checkDirtyAndTouched();
 	}
 	
 	//check matching password

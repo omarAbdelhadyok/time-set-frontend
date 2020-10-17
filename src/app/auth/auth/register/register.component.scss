@@ -1,0 +1,12 @@
+@import './../../../../assets/scss/variables.scss';
+
+.register-form {
+	.create-acc-link {
+		text-decoration: none;
+		color: $primary-color;
+
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+}

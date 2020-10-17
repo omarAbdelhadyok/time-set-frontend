@@ -1,0 +1,63 @@
+<form class="register-form"
+	[formGroup]="registerForm"
+	(ngSubmit)="register()">
+	<h3 class="heading">
+		{{"labels.register" | translate}}
+	</h3>
+
+	<app-input type="text"
+		formControlName="firstName"
+		placeholder="First name">
+	</app-input>
+
+	<app-input class="mt-3"
+		type="text"
+		formControlName="lastName"
+		placeholder="Last name">
+	</app-input>
+
+	<app-input class="mt-3"
+		type="text"
+		formControlName="username"
+		placeholder="Username">
+	</app-input>
+
+	<app-input class="mt-3"
+		type="text"
+		formControlName="email"
+		placeholder="Email">
+	</app-input>
+
+	<app-input class="mt-3"
+		type="password"
+		formControlName="password"
+		placeholder="Password">
+	</app-input>
+
+	<app-input class="mt-3"
+		type="password"
+		formControlName="confirmPassword"
+		placeholder="Confirm Password">
+	</app-input>
+
+	<app-input class="mt-3"
+		type="text"
+		formControlName="mobile"
+		placeholder="Mobile number">
+	</app-input>
+
+	<div class="mt-4">
+		<form-submit-btn btnLable="Register"
+			[formInvalid]="registerForm.invalid"
+			[isLoading]="isLoading">
+		</form-submit-btn>
+	</div>
+
+	<hr class="gray-hr">
+	<div class="register">
+		<a class="create-acc-link"
+			routerLink="/auth/sign-in">
+			Already have an account ye? Sign in here
+		</a>
+	</div>
+</form>

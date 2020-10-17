@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { SignInCredentials, SignInResponse } from 'src/app/auth/models';
 import { User } from 'src/app/user/models';
 import { environment } from 'src/environments/environment';
-import { SignInCredentials, SignInResponse } from '../models';
 
 @Injectable({
 	providedIn: 'root'
@@ -26,7 +26,15 @@ export class AuthService {
 		return this.http.post<SignInResponse>(url, user);
 	}
 
+	isLoggedIn() {
+		return this.getToken() ? true : false;
+	}
+
 	storeToken(token: string): void {
 		localStorage.setItem(this.tokenKey, token);
+	}
+
+	getToken(): string {
+		return localStorage.getItem(this.tokenKey);
 	}
 }

@@ -32,6 +32,10 @@
 	{{this.getControl().errors?.max?.actual}})
 </small>
 
+<small class="error-message"
+	*ngIf="checkNotMatching()">
+	{{"errors.notmatchingpassword" | translate}}
+</small>
 <!--add remaining error messages-->
 
 

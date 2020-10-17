@@ -1,10 +1,12 @@
 {
 	"labels": {
-		"signin": "Sign In"
+		"signin": "Sign In",
+		"register": "Register"
 	},
 	"errors": {
 	  "required": "Field is required",
-	  "maxlength": "Value is too long"
+	  "maxlength": "Value is too long",
+	  "minlength": "Value is too short"
 	}
   }
   

@@ -13,7 +13,7 @@
 				<router-outlet></router-outlet>
 			</div>
 		</section>
-		<div class="translation-select mt-5">
+		<div class="translation-select mt-5 mb-5">
 			<select #langSelect
 				(change)="translate.use(langSelect.value)">
 				<option *ngFor="let lang of translate.getLangs()"

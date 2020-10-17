@@ -1,4 +1,4 @@
-@import './../../../../assets/scss/variables.scss';
+@import './../../../assets/scss/variables.scss';
 
 $header-margin: 45px;
 $header-switch-height: 40px;
@@ -7,7 +7,7 @@ $body-height: calc(100% - #{$header-switch-height});
 .auth-container {
 	text-align: center;
 	height: calc(100vh - #{$header-margin});
-	background: url('./../../../../assets/images/sign-in-bg.svg') no-repeat top;
+	background: url('./../../../assets/images/sign-in-bg.svg') no-repeat top;
 	background-size: cover;
 
 	.white-layer {
