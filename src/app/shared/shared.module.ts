@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
-import { FormSubmitBtnComponent, AppInputComponent } from './components';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient } from '@angular/common/http';
+import { AppCardComponent, FormSubmitBtnComponent, AppInputComponent, AppSpinnerComponent } from './components';
 
 export function HttpLoaderFactory(http: HttpClient) {
 	return new TranslateHttpLoader(http);
 }  
 
 const MODULES = [ReactiveFormsModule];
-const COMPONENTS = [FormSubmitBtnComponent, AppInputComponent];
+const COMPONENTS = [FormSubmitBtnComponent, AppInputComponent, AppCardComponent, AppSpinnerComponent];
 
 @NgModule({
 	declarations: [...COMPONENTS],

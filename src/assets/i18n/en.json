@@ -1,12 +1,13 @@
 {
 	"labels": {
 		"signin": "Sign In",
-		"register": "Register"
+		"register": "Register",
+		"noProjects": "No Projects yet ..."
 	},
 	"errors": {
-	  "required": "Field is required",
-	  "maxlength": "Value is too long",
-	  "minlength": "Value is too short"
+		"app": "Something went wrong",
+		"required": "Field is required",
+		"maxlength": "Value is too long",
+		"minlength": "Value is too short"
 	}
-  }
-  
+}

@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService, NotifierService } from 'src/app/core/services';
 import { PasswordMatchingValidator } from 'src/app/shared/custom-validators';
 import { User } from 'src/app/user/models';
-import { SignInResponse } from 'src/app/auth/models';
+import { SignInResponse } from 'src/app/auth/shared';
 
 @Component({
 	selector: 'app-register',

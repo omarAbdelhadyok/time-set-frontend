@@ -4,7 +4,7 @@ header {
 	background-color: $primary-color;
 
 	.nav {
-		height: 60px;
+		height: $header-height;
 		
 		.nav-links-container {
 			display: flex;

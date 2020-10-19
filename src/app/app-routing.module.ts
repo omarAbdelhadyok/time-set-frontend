@@ -2,19 +2,37 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 import { LoggedInGuard } from './core/guards';
 import { HomeComponent } from './home/components';
+import { BaseLayoutComponent, SiteLayoutComponent } from './layouts';
+
 
 const routes: Routes = [
-	{path: '', redirectTo: '/home', pathMatch: 'full'},
-	{path: 'home', component: HomeComponent},
 	{
-		path: 'auth',
-		loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule),
-		canActivate: [LoggedInGuard]
+		path: '',
+		component: BaseLayoutComponent,
+		children: [
+			{
+				path: 'auth',
+				loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule),
+				canActivate: [LoggedInGuard]
+			}
+		]
+	},
+	{
+		path: '',
+		component: SiteLayoutComponent,
+		children: [
+			{ path: '', redirectTo: '/home', pathMatch: 'full' },
+			{ path: 'home', component: HomeComponent },
+			{
+				path: 'projects',
+				loadChildren: () => import('./projects/projects.module').then(m => m.ProjectsModule)
+			}
+		]
 	}
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {preloadingStrategy: PreloadAllModules})],
-  exports: [RouterModule]
+	imports: [RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })],
+	exports: [RouterModule]
 })
 export class AppRoutingModule { }

@@ -3,11 +3,11 @@ import { TranslateService } from '@ngx-translate/core';
 
 @Component({
 	selector: 'app-root',
-	templateUrl: './app.component.html',
-	styleUrls: ['./app.component.scss']
+	template: `
+		<router-outlet></router-outlet>
+	`
 })
 export class AppComponent {
-	title = 'time-management';
 
 	constructor(public translate: TranslateService) {
 		//initializing languages

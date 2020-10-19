@@ -9,6 +9,7 @@ import { CoreModule } from './core/core.module';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient } from '@angular/common/http';
+import { BaseLayoutComponent, SiteLayoutComponent } from './layouts';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(httpClient: HttpClient) {
@@ -16,7 +17,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
 }
 
 @NgModule({
-	declarations: [AppComponent],
+	declarations: [AppComponent, BaseLayoutComponent, SiteLayoutComponent],
 	imports: [
 		BrowserModule,
 		GeneralModule,

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { SignInCredentials, SignInResponse } from 'src/app/auth/models';
+import { SignInCredentials, SignInResponse } from 'src/app/auth/shared';
 import { User } from 'src/app/user/models';
 import { environment } from 'src/environments/environment';
 

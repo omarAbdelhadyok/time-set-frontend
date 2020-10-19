@@ -1,0 +1,19 @@
+<h2>Projects</h2>
+
+<div *ngIf="projects.length > 0"
+	class="projects-container">
+	<app-card *ngFor="let project of projects"
+		[project]="project"
+		successBtnTitle="View"
+		width="200"
+		(onSuccessBtnClick)="viewProject($event)">
+	</app-card>
+</div>
+
+<app-spinner *ngIf="projects.length == 0 && noData == false">
+</app-spinner>
+
+<div *ngIf="projects.length == 0 && noData == true"
+	class="text-center">
+	{{displayedMsgKey | translate}}
+</div>
