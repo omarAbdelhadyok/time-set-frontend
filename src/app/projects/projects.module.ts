@@ -4,9 +4,9 @@ import { CommonModule } from '@angular/common';
 import { ProjectsRoutingModule } from './projects-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProjectsComponent } from './projects.component';
-import { ProjectsService } from './shared';
 import { SharedModule } from '../shared/shared.module';
 import { ProjectPageComponent } from './project-page/project-page.component';
+import { CardsService, ProjectsService, StacksService } from './shared/services';
 
 
 @NgModule({
@@ -16,6 +16,6 @@ import { ProjectPageComponent } from './project-page/project-page.component';
 	ProjectsRoutingModule,
 	SharedModule
   ],
-  providers: [ProjectsService]
+  providers: [ProjectsService, CardsService, StacksService]
 })
 export class ProjectsModule { }

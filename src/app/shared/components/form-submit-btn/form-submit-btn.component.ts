@@ -8,6 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class FormSubmitBtnComponent implements OnInit {
 
 	@Input() btnLable: string;
+	@Input() type: string;
 	@Input() formInvalid: boolean;
 	@Input() isLoading: boolean;
 

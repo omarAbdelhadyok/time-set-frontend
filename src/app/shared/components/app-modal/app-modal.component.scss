@@ -1,0 +1,45 @@
+@import './../../../../assets/scss/variables.scss';
+
+.modal-container {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	background-color: rgba(0, 0, 0, 0.6);
+
+	.modal {
+		width: 40%;
+		margin: 150px auto;
+		background-color: #fff;
+		padding: 15px;
+		border-radius: 5px;
+		position: relative;
+
+		&.small {
+			width: 40%;
+		}
+
+		&.medium {
+			width: 60%;
+		}
+
+		&.large {
+			width: 80%;
+		}
+
+		.i-cancel-circle {
+			position: absolute;
+			top: 10px;
+			right: 10px;
+			font-size: 20px;
+			color: $danger-color;
+			cursor: pointer;
+			
+			&:hover {
+				color: $danger-hover;
+			}
+		}
+	}
+	
+}

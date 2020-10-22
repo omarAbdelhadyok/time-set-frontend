@@ -2,7 +2,12 @@
 @import '../node_modules/bootstrap/dist/css/bootstrap-grid.min.css';
 @import './assets/fonts/style.css';
 @import url('https://fonts.googleapis.com/css2?family=Dosis&display=swap');
+
 @import './assets/scss/variables.scss';
+@import './assets/scss/buttons.scss';
+@import './assets/scss/elements.scss';
+
+@import './assets/scss/arabic.scss';
 
 
 //normalization
@@ -14,52 +19,11 @@ body {
 }
 
 //general styles
-.error-message {
-	display: block;
-	margin-top: 5px;
-	text-align: left;
-	color: $danger-color;
-}
 
-input, textarea {
-	width: 100%;
-	height: 40px;
-	padding: 5px;
-	border: 2px solid #DFE1E6;
-    border-radius: 3px;
-	color: #696969;
-	outline: none;
-	
-	&:focus {
-		border-bottom: 2px solid $primary-color;
-	}
-}
 
-app-input {
-	display: block;
-}
 
-.input-error {
-	border: 2px solid $danger-color;
 
-	&:focus {
-		border-bottom: 2px solid $danger-color;
-	}
-}
 
-.app-btn {
-	background: #21618c;
-    color: #FFF;
-    border: 0;
-    border-radius: 3px;
-	padding: 12px 20px 12px 20px;
-	cursor: pointer;
-}
-
-.app-btn[disabled] {
-	background: #649fc7;
-	cursor: not-allowed;
-}
 
 .gray-hr {
 	display: block;
@@ -69,47 +33,23 @@ app-input {
 	margin: 1em 0; padding: 0;
 }
 
-.card {
-	box-shadow: rgba(0,0,0,0.1) 0 0 10px;
-	margin: 15px 15px 15px 0;
+//move back to component only take properties to change
+//delete app-card, not useful
 
-	.card-img {
-		width: 100%;
-		height: 180px;
-	}
 
-	.card-section {
-		padding: 15px;
-
-		.card-header {
-			.card-title {
-				margin: 0;
-				padding-bottom: 5px;
-			}
-		
-			.card-subtitle {
-				margin: 0;
-				color: #777;
-			}
-		}
-	}
-
-	.card-actions {
-		margin-top: 15px;
-	}
-}
-
-.i-spinner9 {
+@mixin spinner {
 	animation: spin-animation 0.5s infinite;
 	display: inline-block;
 	color: $primary-color;
 }
 
 .s-spinner {
+	@include spinner();
 	font-size: 12px;
 }
 
 .l-spinner {
+	@include spinner();
 	font-size: 45px;
 }
   
@@ -122,10 +62,10 @@ app-input {
 	}
 }
 
-body.rtl {
-	.card {
-		margin: 15px 0 15px 15px;
-	}
+
+//cards alignment
+.card {
+	margin: 15px 15px 15px 0;
 }
 
 .text-center {

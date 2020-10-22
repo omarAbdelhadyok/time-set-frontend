@@ -1,1 +1,87 @@
-<p>project-page works!</p>
+<div *ngIf="project?.stacks.length > 0"
+	class="stacks-container">
+
+	<div *ngFor="let stack of project.stacks; index as i"
+		class="stack card">
+		
+		<h3 class="stack-title">
+			<i class="i-pencil"
+				(click)="openEditStackModal(stack)">
+			</i>
+			{{stack.title}}
+		</h3>
+
+		<div class="cards-box">
+			<div *ngFor="let card of stack?.cards"
+				class="card-viewer">
+				<p class="m-0">{{card.title}}</p>
+			</div>
+		</div>
+
+		<form [formGroup]="newCardForms"
+			class="new-card"
+			(ngSubmit)="createCard(i)">
+			<div formArrayName="cardForms">
+				<div [formGroupName]="i">
+					<app-input type="text"
+						formControlName="title"
+						[placeholder]="'forms.title' | translate"
+						[hideErrors]="true">
+					</app-input>
+
+					<div class="mt-2">
+						<form-submit-btn [btnLable]="'labels.addCard' | translate"
+							type="primary-outline"
+							[formInvalid]="cardForms['controls'][i].invalid"
+							[isLoading]="creatingCard && cardForms['controls'][i].valid">
+						</form-submit-btn>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+
+	<form [formGroup]="newStackForm"
+		class="stack card new-stack"
+		(ngSubmit)="createStack()">
+		<h3 class="stack-title">
+			{{'labels.createStack' | translate}}
+		</h3>
+		<app-input class="input-margin"
+			type="text"
+			formControlName="title"
+			[placeholder]="'forms.title' | translate"
+			[hideErrors]="true">
+		</app-input>
+		<div class="mt-2">
+			<form-submit-btn [btnLable]="'labels.addStack' | translate"
+				type="primary-outline"
+				[formInvalid]="newStackForm.invalid"
+				[isLoading]="creatingStack">
+			</form-submit-btn>
+		</div>
+	</form>
+</div>
+
+<!-- Edit Stack Modal -->
+<app-modal *ngIf="isStackModalOpened"
+	(closeModal)="isStackModalOpened = false">
+	<form [formGroup]="editStackForm"
+		(ngSubmit)="editStack()">
+		<h3 class="">
+			{{'labels.editStack' | translate}}
+		</h3>
+		<app-input type="text"
+			formControlName="title"
+			[placeholder]="'forms.title' | translate"
+			[hideErrors]="true">
+		</app-input>
+		<div class="mt-2">
+			<form-submit-btn [btnLable]="'labels.editStack' | translate"
+				type="primary-outline"
+				[formInvalid]="editStackForm.invalid"
+				[isLoading]="editingStack">
+			</form-submit-btn>
+		</div>
+	</form>
+</app-modal>

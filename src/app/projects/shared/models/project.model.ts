@@ -1,5 +1,6 @@
 import { StatusNames } from 'src/app/shared/enums';
 import { EntityAudit } from 'src/app/shared/models/entity-audit.model';
+import { Stack } from './stack.model';
 
 export class Project extends EntityAudit {
 	
@@ -13,5 +14,6 @@ export class Project extends EntityAudit {
 	description: string;
 	status: StatusNames;
 	img?: string;
+	stacks?: Stack[];
 
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Project } from '../shared';
-import { ProjectsService } from '../shared/projects.service';
+import { Project } from '../shared/models';
+import { ProjectsService } from '../shared/services';
 
 @Component({
 	selector: 'app-dashboard',

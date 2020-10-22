@@ -20,6 +20,7 @@ export class AppInputComponent implements ControlValueAccessor {
 	@Input() type: string;
 	@Input() placeholder: string;
 	@Input() formControlName: string;
+	@Input() hideErrors: boolean = false;
 
 	/* get hold of FormControl instance no matter formControl or formControlName is given. If formControlName is given, then this.controlContainer.control is the parent FormGroup (or FormArray) instance. */
 	get control() {

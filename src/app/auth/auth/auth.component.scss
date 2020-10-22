@@ -6,7 +6,7 @@ $body-height: calc(100% - #{$header-switch-height});
 
 .auth-container {
 	text-align: center;
-	height: calc(100vh - #{$header-margin});
+	height: 100vh;
 	background: url('./../../../assets/images/sign-in-bg.svg') no-repeat top;
 	background-size: cover;
 
@@ -33,6 +33,10 @@ $body-height: calc(100% - #{$header-switch-height});
 	
 			.body {
 				height: $body-height;
+
+				.heading {
+					color: #777;
+				}
 			}
 		}
 

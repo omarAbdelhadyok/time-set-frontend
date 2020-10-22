@@ -1,39 +1,39 @@
 <input [type]="type"
 	[placeholder]="placeholder"
 	[formControl]="control"
-	[ngClass]="{'input-error': checkErrors()}">
+	[ngClass]="{'input-error': checkErrors() && !hideErrors}">
 
 <small class="error-message"
-	*ngIf="checkRequired()">
+	*ngIf="checkRequired() && !hideErrors">
 	{{"errors.required" | translate}}
 </small>
 
 <small class="error-message"
-	*ngIf="checkMinLength()">
+	*ngIf="checkMinLength() && !hideErrors">
 	{{"errors.minlength" | translate}} ({{this.getControl().errors?.minlength?.requiredLength}} /
 	{{this.getControl().errors?.minlength?.actualLength}})
 </small>
 
 <small class="error-message"
-	*ngIf="checkMaxLength()">
+	*ngIf="checkMaxLength() && !hideErrors">
 	{{"errors.maxlength"}} ({{this.getControl().errors?.maxlength?.requiredLength}} /
 	{{this.getControl().errors?.maxlength?.actualLength}})
 </small>
 
 <small class="error-message"
-	*ngIf="checkMin()">
+	*ngIf="checkMin() && !hideErrors">
 	{{"errors.min" | translate}} ({{this.getControl().errors?.min?.min}} /
 	{{this.getControl().errors?.min?.actual}})
 </small>
 
 <small class="error-message"
-	*ngIf="checkMax()">
+	*ngIf="checkMax() && !hideErrors">
 	{{"errors.max" | translate}} ({{this.getControl().errors?.max?.max}} /
 	{{this.getControl().errors?.max?.actual}})
 </small>
 
 <small class="error-message"
-	*ngIf="checkNotMatching()">
+	*ngIf="checkNotMatching() && !hideErrors">
 	{{"errors.notmatchingpassword" | translate}}
 </small>
 <!--add remaining error messages-->

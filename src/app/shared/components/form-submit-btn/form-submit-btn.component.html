@@ -1,4 +1,5 @@
 <button class="app-btn"
+	[ngClass]="type"
 	type="submit"
 	[disabled]="formInvalid || isLoading">
 	{{btnLable}}

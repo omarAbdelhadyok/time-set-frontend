@@ -2,7 +2,16 @@
 	"labels": {
 		"signin": "Sign In",
 		"register": "Register",
-		"noProjects": "No Projects yet ..."
+		"noProjects": "No Projects yet ...",
+
+		"createStack": "Create Stack",
+		"addStack": "Add Stack",
+		"addCard": "Add Card",
+		"editStack": "Edit Stack",
+		"editCard": "Edit Card"
+	},
+	"forms": {
+		"title": "Title"
 	},
 	"errors": {
 		"app": "Something went wrong",

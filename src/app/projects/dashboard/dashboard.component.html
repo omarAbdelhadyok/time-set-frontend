@@ -1,13 +1,34 @@
-<h2>Projects</h2>
+<h2 class="m-0">Projects</h2>
 
 <div *ngIf="projects.length > 0"
-	class="projects-container">
-	<app-card *ngFor="let project of projects"
-		[project]="project"
-		successBtnTitle="View"
-		width="200"
-		(onSuccessBtnClick)="viewProject($event)">
-	</app-card>
+	class="projects-holder">
+
+	<div *ngFor="let project of projects"
+		class="card">
+		<div *ngIf="project.img"
+			class="card-img"
+			style='background: url({{project.img}}) no-repeat center; background-size: cover;'>
+		</div>
+
+		<div class="card-section">
+			<header class="card-header">
+				<h3 class="card-title">
+					{{project.title}}
+				</h3>
+				<p *ngIf="project.description"
+					class="card-subtitle">
+					{{project.description}}
+				</p>
+			</header>
+			<div class="card-actions">
+				<button class="app-btn primary"
+					(click)="viewProject(project.id)">
+					View
+				</button>
+			</div>
+		</div>
+	</div>
+
 </div>
 
 <app-spinner *ngIf="projects.length == 0 && noData == false">

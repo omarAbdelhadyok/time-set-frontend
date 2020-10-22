@@ -4,14 +4,15 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient } from '@angular/common/http';
-import { AppCardComponent, FormSubmitBtnComponent, AppInputComponent, AppSpinnerComponent } from './components';
+import { FormSubmitBtnComponent, AppInputComponent, AppSpinnerComponent } from './components';
+import { AppModalComponent } from './components/app-modal/app-modal.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
 	return new TranslateHttpLoader(http);
 }  
 
 const MODULES = [ReactiveFormsModule];
-const COMPONENTS = [FormSubmitBtnComponent, AppInputComponent, AppCardComponent, AppSpinnerComponent];
+const COMPONENTS = [FormSubmitBtnComponent, AppInputComponent, AppSpinnerComponent, AppModalComponent];
 
 @NgModule({
 	declarations: [...COMPONENTS],
