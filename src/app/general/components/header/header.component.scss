@@ -1,66 +1,85 @@
 @import './../../../../assets/scss/variables.scss';
 
-header {
-	background-color: $primary-color;
+// header {
+// 	background-color: $primary-color;
 
-	.nav {
-		height: $header-height;
+// 	.nav {
+// 		height: $header-height;
 		
-		.nav-links-container {
-			display: flex;
-			align-items: center;
+// 		.nav-links-container {
+// 			display: flex;
+// 			align-items: center;
 
-			.menu {
-				@media (min-width: 768px) {
-					display: none;
-				}
-			}
+// 			.menu {
+// 				@media (min-width: 768px) {
+// 					display: none;
+// 				}
+// 			}
 
-			.nav-links {
-				display: none;
-				list-style-type: none;
-				padding: 0;
+// 			.nav-links {
+// 				display: none;
+// 				list-style-type: none;
+// 				padding: 0;
 
-				@media (min-width: 768px) {
-					display: block;
-				}
+// 				@media (min-width: 768px) {
+// 					display: block;
+// 				}
 
-				.nav-link {
-					display: inline-block;
-					width: 80px;
-					text-align: center;
+// 				.nav-link {
+// 					display: inline-block;
+// 					width: 80px;
+// 					text-align: center;
 
-					a {
-						text-decoration: none;
-						color: #FFF;
-						font-weight: bolder;
+// 					a {
+// 						text-decoration: none;
+// 						color: #FFF;
+// 						font-weight: bolder;
 
-						&:hover {
-							text-decoration: underline;
-						}
-					}
-				}
-			}
+// 						&:hover {
+// 							text-decoration: underline;
+// 						}
+// 					}
+// 				}
+// 			}
 		
-			.logo {
-				text-decoration: none;
-				font-size: 18px;
-				font-weight: bolder;
-				color: #FFF;
-				padding: 5px;
-				// background-color: rgba(255, 255, 255, 0.4);
-			}
-		}
+// 			.logo {
+// 				text-decoration: none;
+// 				font-size: 18px;
+// 				font-weight: bolder;
+// 				color: #FFF;
+// 				padding: 5px;
+// 				// background-color: rgba(255, 255, 255, 0.4);
+// 			}
+// 		}
 
-		.user-nav-contianer {
-			display: flex;
-			align-items: center;
-			color: #FFF;
+// 		.user-nav-contianer {
+// 			display: flex;
+// 			align-items: center;
+// 			color: #FFF;
 
-			p {
-				width: 100%;
-				text-align: right;
-			}
-		}
+// 			p {
+// 				width: 100%;
+// 				text-align: right;
+// 			}
+// 		}
+// 	}
+// }
+
+.spacer {
+	flex: 1 1 auto;
+  }
+
+.logo {
+	display: flex;
+	align-items: center;
+	text-decoration: none;
+	font-size: 18px;
+	font-weight: bolder;
+	color: $primary-color;
+	padding: 5px;
+	
+	&:hover {
+		opacity: 0.8;
 	}
 }
+  

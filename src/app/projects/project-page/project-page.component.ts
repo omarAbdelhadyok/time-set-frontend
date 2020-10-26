@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { NotifierService } from 'src/app/core/services';
-import { HomeComponent } from 'src/app/home/components';
 import { Card, Project, Stack } from '../shared/models';
 import { CardsService, ProjectsService, StacksService } from '../shared/services';
+import { MatFormFieldAppearance } from './../../shared/enums';
 
 @Component({
 	selector: 'app-project-page',
@@ -19,11 +19,10 @@ export class ProjectPageComponent implements OnInit {
 	editingStack: boolean = false;
 	creatingCard: boolean = false;
 
-	isStackModalOpened: boolean = false;
+	matFormFieldAppearance = MatFormFieldAppearance;
 
 	newStackForm: FormGroup;
 	newCardForms: FormGroup;
-	editStackForm: FormGroup;
 
 	constructor(private route: ActivatedRoute,
 		private projectsService: ProjectsService,
@@ -51,7 +50,6 @@ export class ProjectPageComponent implements OnInit {
 	createForms() {
 		this.createNewStackForm();
 		this.initNewCardForm();
-		this.createEditStackForm();
 	}
 
 	//new stack form
@@ -82,18 +80,6 @@ export class ProjectPageComponent implements OnInit {
 		this.cardForms.push(this.createNewCardForm());
 	}
 
-	//edit stack form
-	createEditStackForm(): void {
-		this.editStackForm = this.fb.group({
-			title: ['', [Validators.required]]
-		});
-	}
-
-	//stack modal
-	openEditStackModal(stack: Stack) {
-		
-	}
-
 	//create stack
 	createStack() {
 		if(this.newStackForm.invalid) {
@@ -104,23 +90,12 @@ export class ProjectPageComponent implements OnInit {
 		this.creatingStack = true;
 		this.stacksService.create(this.project.id, stack).subscribe(stack => {
 			this.project.stacks.push(stack);
-			this.addNewCardForm();
 			this.creatingStack = false;
+			this.addNewCardForm();
+			this.newStackForm.reset();
 		}, err => {
 			this.creatingStack = false;
 		})
-	}
-
-	editStack() {
-		if(this.editStackForm.invalid) {
-			this.notifier.errorMessage('errors.fillForm');
-			return;
-		}
-		let stack = new Stack(this.editStackForm.value);
-		console.log(stack);
-		this.editingStack = true;
-		this.stacksService.update(this.project.id, stack.id, stack).subscribe(console.log);
-		this.isStackModalOpened = false;
 	}
 
 	//create card
@@ -133,13 +108,19 @@ export class ProjectPageComponent implements OnInit {
 		let stack = this.project.stacks[formIndex];
 		let newCard = new Card(form.value);
 		this.creatingCard = true;
-		this.cardsService.create(this.project.id, stack.id, newCard).subscribe(card => {
+		this.cardsService.create(stack.id, newCard).subscribe(card => {
 			stack.cards.push(card);
 			this.creatingCard = false;
-			form.reset();
+			this.resetForm(form);
 		}, err => {
 			this.creatingCard = false;
 		});
+	}
+
+	private resetForm(form: FormGroup | AbstractControl): void {
+		form.reset();
+		form.markAsPristine();
+		form.markAsUntouched();
 	}
 
 }

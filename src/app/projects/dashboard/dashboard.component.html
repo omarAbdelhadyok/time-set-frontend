@@ -3,31 +3,24 @@
 <div *ngIf="projects.length > 0"
 	class="projects-holder">
 
-	<div *ngFor="let project of projects"
-		class="card">
-		<div *ngIf="project.img"
-			class="card-img"
-			style='background: url({{project.img}}) no-repeat center; background-size: cover;'>
-		</div>
-
-		<div class="card-section">
-			<header class="card-header">
-				<h3 class="card-title">
-					{{project.title}}
-				</h3>
-				<p *ngIf="project.description"
-					class="card-subtitle">
-					{{project.description}}
-				</p>
-			</header>
-			<div class="card-actions">
-				<button class="app-btn primary"
-					(click)="viewProject(project.id)">
-					View
-				</button>
-			</div>
-		</div>
-	</div>
+	<mat-card class="card"
+		*ngFor="let project of projects">
+		<mat-card-header>
+			<mat-card-title>
+				{{project.title}}
+			</mat-card-title>
+			<mat-card-subtitle *ngIf="project.description">
+				{{project.description}}
+			</mat-card-subtitle>
+		</mat-card-header>
+		<mat-card-actions>
+			<button mat-flat-button
+				color="primary"
+				(click)="viewProject(project.id)">
+				View
+			</button>
+		</mat-card-actions>
+	</mat-card>
 
 </div>
 

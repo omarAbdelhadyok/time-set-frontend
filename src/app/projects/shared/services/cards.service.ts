@@ -11,7 +11,7 @@ export class CardsService {
 
 	constructor(private http: HttpClient) { }
 
-	create(projectId: number, stackId: number, card: Card): Observable<Card> {
-		return this.http.post<Card>(`${this.baseUrl}/${projectId}/${stackId}`, card);
+	create(stackId: number, card: Card): Observable<Card> {
+		return this.http.post<Card>(`${this.baseUrl}/${stackId}`, card);
 	}
 }

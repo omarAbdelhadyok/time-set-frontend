@@ -15,7 +15,7 @@ export class StacksService {
 		return this.http.post<Stack>(`${this.baseUrl}/${projectId}`, stack);
 	}
 
-	update(projectId: number, stackId: number, stack: Stack): Observable<Stack> {
-		return this.http.put<Stack>(`${this.baseUrl}/${projectId}/${stackId}`, stack);
+	update(stack: Stack): Observable<Stack> {
+		return this.http.put<Stack>(this.baseUrl, stack);
 	}
 }

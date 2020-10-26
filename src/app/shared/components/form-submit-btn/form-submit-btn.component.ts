@@ -11,6 +11,7 @@ export class FormSubmitBtnComponent implements OnInit {
 	@Input() type: string;
 	@Input() formInvalid: boolean;
 	@Input() isLoading: boolean;
+	@Input() icon: string;
 
 	constructor() { }
 

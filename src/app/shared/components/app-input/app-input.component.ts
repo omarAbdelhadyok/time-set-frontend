@@ -1,5 +1,6 @@
 import { Component, forwardRef, Input, ViewChild } from '@angular/core';
-import { AbstractControl, ControlContainer, ControlValueAccessor, FormControlDirective, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ControlContainer, ControlValueAccessor, FormControlDirective, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { MatFormFieldAppearance } from '../../enums';
 
 @Component({
 	selector: 'app-input',
@@ -17,7 +18,9 @@ export class AppInputComponent implements ControlValueAccessor {
 
 	@ViewChild(FormControlDirective, { static: true }) formControlDirective: FormControlDirective;
 	
+	@Input() appearance: string = MatFormFieldAppearance.LEGACY;
 	@Input() type: string;
+	@Input() label: string;
 	@Input() placeholder: string;
 	@Input() formControlName: string;
 	@Input() hideErrors: boolean = false;
@@ -47,38 +50,34 @@ export class AppInputComponent implements ControlValueAccessor {
 
 
 	checkErrors() {
-		return this.getControl().errors && this.checkDirtyAndTouched();
+		return this.control.errors && this.checkDirty();
 	}
 	checkRequired() {
-		return this.getControl().errors?.required && this.checkDirtyAndTouched();
+		return this.control.errors?.required && this.checkDirty();
 	}
 	checkMinLength() {
-		return this.getControl().errors?.minlength && this.checkDirtyAndTouched();
+		return this.control.errors?.minlength && this.checkDirty();
 	}
 	checkMaxLength() {
-		return this.getControl().errors?.maxlength && this.checkDirtyAndTouched();
+		return this.control.errors?.maxlength && this.checkDirty();
 	}
 	checkMin() {
-		return this.getControl().errors?.min && this.checkDirtyAndTouched();
+		return this.control.errors?.min && this.checkDirty();
 	}
 	checkMax() {
-		return this.getControl().errors?.max && this.checkDirtyAndTouched();
+		return this.control.errors?.max && this.checkDirty();
 	}
 	checkNotMatching() {
-		return this.getControl().errors?.notmatching && this.checkDirtyAndTouched();
+		return this.control.errors?.notmatching && this.checkDirty();
 	}
 	
 	//check matching password
-
-	getControl(): AbstractControl {
-		return this.controlContainer.control.get(this.formControlName);
-	}
-	checkDirtyAndTouched() {
-		return this.getControl().dirty && this.getControl().touched;
+	checkDirty() {
+		return this.control.dirty && this.control.touched;
 	}
 
 	log() {
-		console.log(this.getControl().errors)
+		console.log(this.control.errors)
 	}
 
 }

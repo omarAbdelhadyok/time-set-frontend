@@ -1,37 +1,23 @@
-<header class="container-fluid">
-    <div class="nav row">
-        <div class="nav-links-container col-12 col-md-8">
-			<a href="#"
-				class="logo">
-				<i class="i-stopwatch"></i>
-				Time Management
-			</a>
-			<ul class="nav-links">
-				<li class="nav-link">
-					<a href="">Home</a>
-				</li>
-				<li class="nav-link">
-					<a href="">Home</a>
-				</li>
-				<li class="nav-link">
-					<a href="">Home</a>
-				</li>
-				<li class="nav-link">
-					<a href="">About</a>
-				</li>
-			</ul>
-			<div class="menu">
-				<i class="i-menu3"></i>
-			</div>
-		</div>
-        <div class="user-nav-contianer col-12 col-md-4">
-			<p>User name</p>
-		</div>
-    </div>
-</header>
-
-<!-- <h2>{{ 'HOME.TITLE' | translate }}</h2>
+<!--<h2>{{ 'HOME.TITLE' | translate }}</h2>
 
 <select #langSelect (change)="translate.use(langSelect.value)">
 	<option *ngFor="let lang of translate.getLangs()" [value]="lang" [selected]="lang === translate.currentLang">{{ lang }}</option>
   </select> -->
+
+
+<mat-toolbar>
+	<a href="#"
+		class="logo">
+		<mat-icon>alarm</mat-icon>
+		<span>Time Management</span>
+	</a>
+	<button mat-button
+		class="example-icon favorite-icon">
+		Home
+	</button>
+	<span class="spacer"></span>
+	<button mat-icon-button
+		class="example-icon">
+		<mat-icon>person</mat-icon>
+	</button>
+</mat-toolbar>

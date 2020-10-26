@@ -5,14 +5,14 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient } from '@angular/common/http';
 import { FormSubmitBtnComponent, AppInputComponent, AppSpinnerComponent } from './components';
-import { AppModalComponent } from './components/app-modal/app-modal.component';
+import { MaterialModule } from '../material/material.module';
 
 export function HttpLoaderFactory(http: HttpClient) {
 	return new TranslateHttpLoader(http);
 }  
 
-const MODULES = [ReactiveFormsModule];
-const COMPONENTS = [FormSubmitBtnComponent, AppInputComponent, AppSpinnerComponent, AppModalComponent];
+const MODULES = [ReactiveFormsModule, MaterialModule];
+const COMPONENTS = [FormSubmitBtnComponent, AppInputComponent, AppSpinnerComponent];
 
 @NgModule({
 	declarations: [...COMPONENTS],
@@ -26,7 +26,8 @@ const COMPONENTS = [FormSubmitBtnComponent, AppInputComponent, AppSpinnerCompone
 			},
 			isolate: false
 		}),
-	  	...MODULES
+		...MODULES,
+		MaterialModule  
 	],
 	exports: [...MODULES, ...COMPONENTS, TranslateModule]
 })

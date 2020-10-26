@@ -5,8 +5,7 @@
 		class="stack card">
 		
 		<h3 class="stack-title">
-			<i class="i-pencil"
-				(click)="openEditStackModal(stack)">
+			<i class="i-pencil">
 			</i>
 			{{stack.title}}
 		</h3>
@@ -23,18 +22,20 @@
 			(ngSubmit)="createCard(i)">
 			<div formArrayName="cardForms">
 				<div [formGroupName]="i">
-					<app-input type="text"
-						formControlName="title"
+					<input class="card-input"
 						[placeholder]="'forms.title' | translate"
-						[hideErrors]="true">
-					</app-input>
+						formControlName="title">
 
 					<div class="mt-2">
-						<form-submit-btn [btnLable]="'labels.addCard' | translate"
-							type="primary-outline"
-							[formInvalid]="cardForms['controls'][i].invalid"
-							[isLoading]="creatingCard && cardForms['controls'][i].valid">
-						</form-submit-btn>
+						<button mat-flat-button
+							color="accent"
+							[disabled]="creatingCard && cardForms['controls'][i].valid">
+							{{'labels.addCard' | translate}}
+							<mat-spinner *ngIf="creatingCard && cardForms['controls'][i].valid"
+								class="d-inline-block"
+								diameter="20">
+							</mat-spinner>
+						</button>
 					</div>
 				</div>
 			</div>
@@ -47,41 +48,19 @@
 		<h3 class="stack-title">
 			{{'labels.createStack' | translate}}
 		</h3>
-		<app-input class="input-margin"
-			type="text"
-			formControlName="title"
+		<input class="card-input"
 			[placeholder]="'forms.title' | translate"
-			[hideErrors]="true">
-		</app-input>
+			formControlName="title">
 		<div class="mt-2">
-			<form-submit-btn [btnLable]="'labels.addStack' | translate"
-				type="primary-outline"
-				[formInvalid]="newStackForm.invalid"
-				[isLoading]="creatingStack">
-			</form-submit-btn>
+			<button mat-flat-button
+				color="accent"
+				[disabled]="creatingStack && newStackForm.invalid">
+				{{'labels.addStack' | translate}}
+				<mat-spinner *ngIf="creatingStack"
+					class="d-inline-block"
+					diameter="20">
+				</mat-spinner>
+			</button>
 		</div>
 	</form>
 </div>
-
-<!-- Edit Stack Modal -->
-<app-modal *ngIf="isStackModalOpened"
-	(closeModal)="isStackModalOpened = false">
-	<form [formGroup]="editStackForm"
-		(ngSubmit)="editStack()">
-		<h3 class="">
-			{{'labels.editStack' | translate}}
-		</h3>
-		<app-input type="text"
-			formControlName="title"
-			[placeholder]="'forms.title' | translate"
-			[hideErrors]="true">
-		</app-input>
-		<div class="mt-2">
-			<form-submit-btn [btnLable]="'labels.editStack' | translate"
-				type="primary-outline"
-				[formInvalid]="editStackForm.invalid"
-				[isLoading]="editingStack">
-			</form-submit-btn>
-		</div>
-	</form>
-</app-modal>
