@@ -3,10 +3,27 @@
 
 	<div *ngFor="let stack of project.stacks; index as i"
 		class="stack card">
-		
+
+		<button class="menu-icon"
+			mat-icon-button
+			[matMenuTriggerFor]="menu"
+			color="accent">
+			<mat-icon>more_horiz</mat-icon>
+		</button>
+
+		<mat-menu #menu="matMenu">
+			<button mat-menu-item
+				(click)="openEditStackModal(stack)">
+			  <mat-icon>edit</mat-icon>
+			  <span>Edit</span>
+			</button>
+			<button mat-menu-item>
+			  <mat-icon>delete</mat-icon>
+			  <span>Delete</span>
+			</button>
+		</mat-menu>
+
 		<h3 class="stack-title">
-			<i class="i-pencil">
-			</i>
 			{{stack.title}}
 		</h3>
 

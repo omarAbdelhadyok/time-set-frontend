@@ -1,10 +1,12 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { NotifierService } from 'src/app/core/services';
+import { StackEditComponent } from '../shared/components';
 import { Card, Project, Stack } from '../shared/models';
 import { CardsService, ProjectsService, StacksService } from '../shared/services';
-import { MatFormFieldAppearance } from './../../shared/enums';
 
 @Component({
 	selector: 'app-project-page',
@@ -19,8 +21,6 @@ export class ProjectPageComponent implements OnInit {
 	editingStack: boolean = false;
 	creatingCard: boolean = false;
 
-	matFormFieldAppearance = MatFormFieldAppearance;
-
 	newStackForm: FormGroup;
 	newCardForms: FormGroup;
 
@@ -29,7 +29,8 @@ export class ProjectPageComponent implements OnInit {
 		private stacksService: StacksService,
 		private cardsService: CardsService,
 		private notifier: NotifierService,
-		private fb: FormBuilder) { }
+		private fb: FormBuilder,
+		private dialog: MatDialog) { }
 
 	ngOnInit(): void {
 		this.projectId = this.route.snapshot.params.id;
@@ -43,6 +44,8 @@ export class ProjectPageComponent implements OnInit {
 			for(let i = 0; i < project?.stacks.length; i++) {
 				this.addNewCardForm();
 			}
+		}, (error: HttpErrorResponse) => {
+			this.notifier.errorMessage(error.error.message);
 		});
 	}
 
@@ -80,6 +83,14 @@ export class ProjectPageComponent implements OnInit {
 		this.cardForms.push(this.createNewCardForm());
 	}
 
+	//edit modals
+	openEditStackModal(stack: Stack) {
+		const dialg = this.dialog.open(StackEditComponent, {
+			data: stack,
+			width: '40%'
+		});
+	}
+
 	//create stack
 	createStack() {
 		if(this.newStackForm.invalid) {
@@ -111,16 +122,10 @@ export class ProjectPageComponent implements OnInit {
 		this.cardsService.create(stack.id, newCard).subscribe(card => {
 			stack.cards.push(card);
 			this.creatingCard = false;
-			this.resetForm(form);
+			form.reset();
 		}, err => {
 			this.creatingCard = false;
 		});
-	}
-
-	private resetForm(form: FormGroup | AbstractControl): void {
-		form.reset();
-		form.markAsPristine();
-		form.markAsUntouched();
 	}
 
 }

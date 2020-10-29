@@ -15,31 +15,18 @@
 		position: relative;
 		display: inline-block;
 		vertical-align: top;
-		
-		.i-pencil {
-			// position: absolute;
-			// right: 10px;
-			// top: 5px;
-			cursor: pointer;
 
-			&:hover {
-				opacity: 0.6;
-			}
-		}
-
-		.card-menu {
-			width: 150px;
-			height: 120px;
+		.menu-icon {
 			position: absolute;
-			right: 5px;
-			top: 25px;
-			box-shadow: #999999 0 0 4px;
-			background-color: #fff;
-			padding: 5px;
+			top: 2px;
+			right: 2px;
 		}
 
 		.stack-title {
+			display: flex;
+			align-items: center;
 			margin: 0;
+			margin-top: 10px;
 		}
 
 		.cards-box {

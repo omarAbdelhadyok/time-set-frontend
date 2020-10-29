@@ -7,16 +7,20 @@ import { MatCardModule } from '@angular/material/card';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatMenuModule } from '@angular/material/menu';
+import {MatDialogModule} from '@angular/material/dialog';
 
 const MODULES = [
 	CommonModule,
+	MatProgressSpinnerModule,
 	MatToolbarModule,
 	MatButtonModule,
 	MatIconModule,
 	MatCardModule,
-	MatProgressSpinnerModule,
 	MatFormFieldModule,
-	MatInputModule
+	MatInputModule,
+	MatMenuModule,
+	MatDialogModule
 ]
 
 @NgModule({
