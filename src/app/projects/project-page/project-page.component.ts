@@ -135,7 +135,8 @@ export class ProjectPageComponent implements OnInit {
 		this.cardsService.get(card.id).subscribe(resCard => {
 			const dialg = this.dialog.open(CardModalComponent, {
 				data: resCard,
-				width: '60%'
+				width: '60%',
+				maxHeight: '80vh'
 			});
 		})
 	}

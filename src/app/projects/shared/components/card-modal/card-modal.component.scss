@@ -9,36 +9,13 @@
 }
 
 .card-modal-body {
+	.tasks-accordion .mat-expansion-panel-header-description {
+		justify-content: space-between;
+		align-items: center;
+	  }
 	
 	.tasks-list {
 		list-style-type: none;
 		padding-left: 0;
-	}
-
-	.task {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		padding: 4px;
-		margin: 4px 0;
-		background-color: #eff3f5;
-
-		.actions {
-			display: flex;
-			align-items: center;
-			
-			.complete-task {
-				color: $primary-color;
-				cursor: pointer;
-
-				&:hover {
-					color: $light-primary;
-				}
-			}
-
-			.completed {
-				color: $accent-color;
-			}
-		}
 	}
 }

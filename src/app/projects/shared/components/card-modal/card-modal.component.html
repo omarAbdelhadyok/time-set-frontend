@@ -6,40 +6,75 @@
 		<mat-progress-bar color="primary"
 			[value]="completedPrecent">
 		</mat-progress-bar>
-		<ul class="tasks-list">
-			<li *ngFor="let task of card.tasks; index as i"
-				class="task">
-				{{task.task}}
 
-				<div class="actions">
-					<mat-icon [ngClass]="{
-							'complete-task': task.status === 'ACTIVE',
-							'completed': task.status !== 'ACTIVE'
-						}"
-						(click)="closeTask(task, i)">
-						{{task.status === 'ACTIVE'? 'check_circle_outline' : 'check_circle'}}
-					</mat-icon>
-				</div>
-			</li>
-		</ul>
+		<div class="mt-4">
+			<mat-accordion class="tasks-accordion"
+				[@.disabled]="disableAnimation" multi>
+				<mat-expansion-panel *ngFor="let task of card.tasks; index as i">
+					<mat-expansion-panel-header>
+						<mat-panel-title>
+							{{task.task.length > 20 ? task.task.slice(0, 20) + ' ...' : task.task}}
+						</mat-panel-title>
+						<mat-panel-description>
+							<span>
+								{{displayDate(task.dueDate)}}
+							</span>
+							<mat-icon *ngIf="task.status === 'ACTIVE'; else elseBlock"
+								color="primary"
+								matTooltip="Active">
+								event
+							</mat-icon>
+							<ng-template #elseBlock>
+								<mat-icon color="accent"
+									matTooltip="Closed">
+									assignment_turned_in
+								</mat-icon>
+							</ng-template>
+						</mat-panel-description>
+					</mat-expansion-panel-header>
+	
+					<div class="tasks-body">
+						<p>{{task.task}}</p>
+						<p>{{displayDate(task.createdAt)}}</p>
+					</div>
+
+					<mat-action-row class="actions">
+						<button mat-flat-button
+							color="warn"
+							(click)="deleteTask(task.id, i)">
+							Delete
+						</button>
+						<button mat-flat-button
+							color="accent"
+							*ngIf="task.status === 'ACTIVE'"
+							(click)="closeTask(task, i)">
+							Add
+						</button>
+					</mat-action-row>
+	
+				</mat-expansion-panel>
+			</mat-accordion>
+		</div>
 	</ng-container>
 
 	<form [formGroup]="newTaskForm"
-		class="mt-2"
+		class="mt-2 row"
 		(ngSubmit)="createTask()">
-		<app-input [label]="'forms.task' | translate"
+
+		<app-input class="col-12 col-md-6"
+			[label]="'forms.task' | translate"
 			[placeholder]="'forms.task' | translate"
 			formControlName="task">
 		</app-input>
 
-		<mat-form-field class="mt-1">
+		<mat-form-field class="mt-1 col-12 col-md-6">
 			<input matInput
 				type="datetime-local"
 				placeholder="Due date"
 				formControlName="dueDate">
 		</mat-form-field>
 
-		<div class="mt-2">
+		<div class="mt-2 col-12">
 			<button mat-flat-button
 				color="accent"
 				[disabled]="busyCreatingTask || newTaskForm.invalid">

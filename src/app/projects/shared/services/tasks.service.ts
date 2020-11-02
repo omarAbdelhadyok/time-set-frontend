@@ -20,4 +20,8 @@ export class TasksService {
 	updateStatus(task: Task): Observable<Task> {
 		return this.http.patch<Task>(this.url, task);
 	}
+
+	delete(id: number): Observable<boolean> {
+		return this.http.delete<boolean>(`${this.url}/${id}`);
+	}
 }

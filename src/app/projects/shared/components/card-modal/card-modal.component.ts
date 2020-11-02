@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { NotifierService } from 'src/app/core/services';
@@ -11,13 +11,16 @@ import { TasksService } from '../../services';
 	templateUrl: './card-modal.component.html',
 	styleUrls: ['./card-modal.component.scss']
 })
-export class CardModalComponent implements OnInit {
+export class CardModalComponent implements OnInit, AfterViewInit {
 
 	newTaskForm: FormGroup;
 	busyCreatingTask: boolean = false;
-
+	busyDeletingTask: boolean = true;
 	busyUpdatingStatus: boolean = false;
 	completedPrecent: number;
+
+	//fixes the issue of the mat accourdion when it glitches on dialog open
+	disableAnimation: boolean = true;
 
 	constructor(public dialogRef: MatDialogRef<CardModalComponent>,
 		@Inject(MAT_DIALOG_DATA) public card: Card,
@@ -31,14 +34,24 @@ export class CardModalComponent implements OnInit {
 		this.createNewTaskForm();
 	}
 
+	ngAfterViewInit(): void {
+		// timeout required to avoid the dreaded 'ExpressionChangedAfterItHasBeenCheckedError'
+		setTimeout(() => this.disableAnimation = false);
+	}
+
 	calcCompletedPrecent() {
 		let allTasks = this.card.tasks.length;
 		let completedTasks = 0;
 		this.card.tasks.forEach(task => {
-			if(task.status === "CLOSED") completedTasks += 1;
+			if (task.status === "CLOSED") completedTasks += 1;
 		});
 		this.completedPrecent = (completedTasks / allTasks) * 100;
 		console.log(completedTasks, allTasks);
+	}
+
+	displayDate(date: string): string {
+		if (!date) return;
+		return new Date(date).toLocaleString();
 	}
 
 	createNewTaskForm(): void {
@@ -48,7 +61,7 @@ export class CardModalComponent implements OnInit {
 		});
 	}
 
-	closeTask(task: Task, i: number) {
+	closeTask(task: Task, i: number): void {
 		let updatedTask = new Task(task);
 		updatedTask.status = StatusNames.CLOSED;
 		this.busyUpdatingStatus = true;
@@ -59,8 +72,17 @@ export class CardModalComponent implements OnInit {
 		})
 	}
 
-	createTask() {
-		if(this.newTaskForm.invalid) {
+	deleteTask(taskId: number, taskIndex: number) {
+		this.busyDeletingTask = true;
+		this.tasksService.delete(taskId).subscribe(deleted => {
+			this.card.tasks.splice(taskIndex, 1);
+			this.busyDeletingTask = false;
+			this.calcCompletedPrecent();
+		})
+	}
+
+	createTask(): void {
+		if (this.newTaskForm.invalid) {
 			this.notifier.errorMessage('errors.fillForm');
 			return;
 		}
