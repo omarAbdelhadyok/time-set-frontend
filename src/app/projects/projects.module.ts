@@ -8,17 +8,22 @@ import { SharedModule } from '../shared/shared.module';
 import { ProjectPageComponent } from './project-page/project-page.component';
 import { CardsService, ProjectsService, StacksService } from './shared/services';
 import { MaterialModule } from '../material/material.module';
-import { StackEditComponent } from './shared/components';
-
+import { CardModalComponent, DeleteConfirmComponent } from './shared/components';
 
 @NgModule({
-  declarations: [DashboardComponent, ProjectsComponent, ProjectPageComponent, StackEditComponent],
-  imports: [
-    CommonModule,
-	ProjectsRoutingModule,
-	SharedModule,
-	MaterialModule
-  ],
-  providers: [ProjectsService, CardsService, StacksService]
+	declarations: [
+		DashboardComponent,
+		ProjectsComponent,
+		ProjectPageComponent,
+		DeleteConfirmComponent,
+		CardModalComponent
+	],
+	imports: [
+		CommonModule,
+		ProjectsRoutingModule,
+		SharedModule,
+		MaterialModule
+	],
+	providers: [ProjectsService, CardsService, StacksService]
 })
 export class ProjectsModule { }

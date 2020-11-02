@@ -1,0 +1,14 @@
+<div class="delete-confirm">
+	<p>{{message}}</p>
+</div>
+<button mat-flat-button
+	color="warn"
+	(click)="cancelDelete()">
+	{{'labels.no' | translate}}
+</button>
+
+<button mat-flat-button
+	color="primary"
+	(click)="confirmDelete()">
+	{{'labels.yes' | translate}}
+</button>

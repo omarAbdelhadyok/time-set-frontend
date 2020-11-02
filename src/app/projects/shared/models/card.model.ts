@@ -1,4 +1,5 @@
 import { EntityAudit } from 'src/app/shared/models/entity-audit.model';
+import { Task } from './task.model';
 
 export class Card extends EntityAudit {
 
@@ -11,5 +12,5 @@ export class Card extends EntityAudit {
 	title: string;
 	description: string;
 	comments?: any;
-	tasks?: any;
+	tasks?: Task[];
 }

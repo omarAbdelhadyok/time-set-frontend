@@ -44,11 +44,11 @@ $mat-secondary: (
 // hue. Available color palettes: https://material.io/design/color/
 $my-app-primary: mat-palette($mat-primary);
 $my-app-accent:  mat-palette($mat-secondary, 400, 500, 600);
-
+$my-app-warn: mat-palette($mat-red);
 // Define a custom typography config that overrides the font-family as well as the
 // `headlines` and `body-1` levels.
 $custom-typography: mat-typography-config(
-  $font-family: 'Noto Sans JP, sans-serif'
+  $font-family: 'Dosis, sans-serif'
 );
 
 // Override typography CSS classes (e.g., mat-h1, mat-display-1, mat-typography, etc.).
@@ -67,7 +67,14 @@ $custom-typography: mat-typography-config(
 // $candy-app-warn:    mat-palette($mat-red);
 
 // Create the theme object (a Sass map containing all of the palettes).
-$my-app-theme: mat-light-theme($my-app-primary, $my-app-accent);
+
+$my-app-theme: mat-light-theme((
+  color: (
+    primary: $my-app-primary,
+    accent: $my-app-accent,
+    warn: $my-app-warn,
+  )
+));
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component

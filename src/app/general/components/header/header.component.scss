@@ -65,21 +65,26 @@
 // 	}
 // }
 
-.spacer {
-	flex: 1 1 auto;
-  }
+mat-toolbar {
+	height: $header-height;
 
-.logo {
-	display: flex;
-	align-items: center;
-	text-decoration: none;
-	font-size: 18px;
-	font-weight: bolder;
-	color: $primary-color;
-	padding: 5px;
+	.spacer {
+		flex: 1 1 auto;
+	}
 	
-	&:hover {
-		opacity: 0.8;
+	.logo {
+		display: flex;
+		align-items: center;
+		text-decoration: none;
+		font-size: 18px;
+		font-weight: bolder;
+		color: $primary-color;
+		padding: 5px;
+		
+		&:hover {
+			opacity: 0.8;
+		}
 	}
 }
+
   

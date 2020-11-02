@@ -1,0 +1,44 @@
+@import './../../../../../assets/scss/variables.scss';
+
+.card-subtitle {
+	color: #777;
+
+	&:empty {
+		display: none;
+	}
+}
+
+.card-modal-body {
+	
+	.tasks-list {
+		list-style-type: none;
+		padding-left: 0;
+	}
+
+	.task {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: 4px;
+		margin: 4px 0;
+		background-color: #eff3f5;
+
+		.actions {
+			display: flex;
+			align-items: center;
+			
+			.complete-task {
+				color: $primary-color;
+				cursor: pointer;
+
+				&:hover {
+					color: $light-primary;
+				}
+			}
+
+			.completed {
+				color: $accent-color;
+			}
+		}
+	}
+}

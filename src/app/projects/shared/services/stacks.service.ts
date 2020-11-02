@@ -18,4 +18,8 @@ export class StacksService {
 	update(stack: Stack): Observable<Stack> {
 		return this.http.put<Stack>(this.baseUrl, stack);
 	}
+
+	delete(stackId: number): Observable<boolean> {
+		return this.http.delete<boolean>(`${this.baseUrl}/${stackId}`);
+	}
 }

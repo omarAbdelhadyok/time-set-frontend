@@ -4,32 +4,24 @@
 	<div *ngFor="let stack of project.stacks; index as i"
 		class="stack card">
 
-		<button class="menu-icon"
-			mat-icon-button
-			[matMenuTriggerFor]="menu"
-			color="accent">
-			<mat-icon>more_horiz</mat-icon>
-		</button>
-
-		<mat-menu #menu="matMenu">
-			<button mat-menu-item
-				(click)="openEditStackModal(stack)">
-			  <mat-icon>edit</mat-icon>
-			  <span>Edit</span>
-			</button>
-			<button mat-menu-item>
-			  <mat-icon>delete</mat-icon>
-			  <span>Delete</span>
-			</button>
-		</mat-menu>
-
-		<h3 class="stack-title">
-			{{stack.title}}
-		</h3>
+		<form [formGroup]="editStackForms">
+			<div formArrayName="stackForms">
+				<div [formGroupName]="i">
+					<app-input [label]="'forms.title' | translate"
+						[placeholder]="'forms.title' | translate"
+						formControlName="title"
+						[isLable]="true"
+						[hideErrors]="true"
+						(blur)="updateStack(stack, i)">
+					</app-input>
+				</div>
+			</div>
+		</form>
 
 		<div class="cards-box">
-			<div *ngFor="let card of stack?.cards"
-				class="card-viewer">
+			<div *ngFor="let card of stack?.cards; index as cardIndex"
+				class="card-viewer"
+				(click)="openCardModal(card, cardIndex)">
 				<p class="m-0">{{card.title}}</p>
 			</div>
 		</div>
@@ -39,9 +31,11 @@
 			(ngSubmit)="createCard(i)">
 			<div formArrayName="cardForms">
 				<div [formGroupName]="i">
-					<input class="card-input"
+					<app-input [label]="'forms.title' | translate"
 						[placeholder]="'forms.title' | translate"
-						formControlName="title">
+						formControlName="title"
+						[hideErrors]="true">
+					</app-input>
 
 					<div class="mt-2">
 						<button mat-flat-button
@@ -57,6 +51,13 @@
 				</div>
 			</div>
 		</form>
+
+		<div class="action-box">
+			<button class="action-btn"
+				(click)="deleteStack(stack, i)">
+				Delete
+			</button>
+		</div>
 	</div>
 
 	<form [formGroup]="newStackForm"
@@ -65,9 +66,11 @@
 		<h3 class="stack-title">
 			{{'labels.createStack' | translate}}
 		</h3>
-		<input class="card-input"
+		<app-input [label]="'forms.title' | translate"
 			[placeholder]="'forms.title' | translate"
-			formControlName="title">
+			formControlName="title"
+			[hideErrors]="true">
+		</app-input>
 		<div class="mt-2">
 			<button mat-flat-button
 				color="accent"

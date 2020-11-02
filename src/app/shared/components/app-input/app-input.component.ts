@@ -1,4 +1,4 @@
-import { Component, forwardRef, Input, ViewChild } from '@angular/core';
+import { Component, EventEmitter, forwardRef, Input, Output, ViewChild } from '@angular/core';
 import { ControlContainer, ControlValueAccessor, FormControlDirective, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { MatFormFieldAppearance } from '../../enums';
 
@@ -17,13 +17,17 @@ import { MatFormFieldAppearance } from '../../enums';
 export class AppInputComponent implements ControlValueAccessor {
 
 	@ViewChild(FormControlDirective, { static: true }) formControlDirective: FormControlDirective;
-	
 	@Input() appearance: string = MatFormFieldAppearance.LEGACY;
 	@Input() type: string;
 	@Input() label: string;
 	@Input() placeholder: string;
 	@Input() formControlName: string;
 	@Input() hideErrors: boolean = false;
+	@Input() isLable: boolean = false;
+
+	@Output() blur = new EventEmitter();
+	
+	focus = false;
 
 	/* get hold of FormControl instance no matter formControl or formControlName is given. If formControlName is given, then this.controlContainer.control is the parent FormGroup (or FormArray) instance. */
 	get control() {
@@ -76,8 +80,8 @@ export class AppInputComponent implements ControlValueAccessor {
 		return this.control.dirty && this.control.touched;
 	}
 
-	log() {
-		console.log(this.control.errors)
+	onBlur() {
+		this.blur.emit();
 	}
 
 }

@@ -11,7 +11,7 @@ export class SpinnerInterceptor implements HttpInterceptor {
 
 	intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
 		//show loader only for get requests
-		if (request.method === "GET") {
+		if (request.method === "GET" || request.method === "DELETE") {
 			const spinnerSubscription: Subscription = this.spinnerOverlayService.spinner$.subscribe();
     		return next.handle(request).pipe(finalize(() => spinnerSubscription.unsubscribe()));
 		}

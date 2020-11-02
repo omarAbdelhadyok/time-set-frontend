@@ -1,46 +1,84 @@
-<mat-form-field [appearance]="appearance">
+<mat-form-field [appearance]="appearance"
+	[ngClass]="{'lable': focus === false && isLable === true}">
 	<mat-label>{{label}}</mat-label>
 
 	<input [type]="type"
 		matInput
 		[formControl]="control"
-		[placeholder]="placeholder" />
+		[placeholder]="placeholder"
+		(focus)="focus=true"
+		(blur)="focus=false; onBlur()" />
 
-
-	<mat-error class="error-message"
-		*ngIf="checkRequired() && !hideErrors">
+	<mat-error *ngIf="checkRequired() && !hideErrors">
 		{{"errors.required" | translate}}
 	</mat-error>
 
-	<mat-error class="error-message"
-		*ngIf="checkMinLength() && !hideErrors">
+	<mat-error *ngIf="checkMinLength() && !hideErrors">
 		{{"errors.minlength" | translate}} ({{control.errors?.minlength?.requiredLength}} /
 		{{control.errors?.minlength?.actualLength}})
 	</mat-error>
 
-	<mat-error class="error-message"
-		*ngIf="checkMaxLength() && !hideErrors">
+	<mat-error *ngIf="checkMaxLength() && !hideErrors">
 		{{"errors.maxlength"}} ({{this.control.errors?.maxlength?.requiredLength}} /
 		{{this.control.errors?.maxlength?.actualLength}})
 	</mat-error>
 
-	<mat-error class="error-message"
-		*ngIf="checkMin() && !hideErrors">
+	<mat-error *ngIf="checkMin() && !hideErrors">
 		{{"errors.min" | translate}} ({{this.control.errors?.min?.min}} /
 		{{this.control.errors?.min?.actual}})
 	</mat-error>
 
-	<mat-error class="error-message"
-		*ngIf="checkMax() && !hideErrors">
+	<mat-error *ngIf="checkMax() && !hideErrors">
 		{{"errors.max" | translate}} ({{this.control.errors?.max?.max}} /
 		{{this.control.errors?.max?.actual}})
 	</mat-error>
 
-	<mat-error class="error-message"
-		*ngIf="checkNotMatching() && !hideErrors">
+	<mat-error *ngIf="checkNotMatching() && !hideErrors">
 		{{"errors.notmatchingpassword" | translate}}
 	</mat-error>
 </mat-form-field>
+
+<!-- <ng-container
+	*ngIf="!materialStyle">
+	<input class="app-input"
+		[type]="type"
+		[placeholder]="label"
+		[formControl]="control">
+
+	<small class="input-error"
+		*ngIf="checkRequired() && !hideErrors">
+		{{"errors.required" | translate}}
+	</small>
+
+	<small class="input-error"
+		*ngIf="checkMinLength() && !hideErrors">
+		{{"errors.minlength" | translate}} ({{control.errors?.minlength?.requiredLength}} /
+		{{control.errors?.minlength?.actualLength}})
+	</small>
+
+	<small class="input-error"
+		*ngIf="checkMaxLength() && !hideErrors">
+		{{"errors.maxlength"}} ({{this.control.errors?.maxlength?.requiredLength}} /
+		{{this.control.errors?.maxlength?.actualLength}})
+	</small>
+
+	<small class="input-error"
+		*ngIf="checkMin() && !hideErrors">
+		{{"errors.min" | translate}} ({{this.control.errors?.min?.min}} /
+		{{this.control.errors?.min?.actual}})
+	</small>
+
+	<small class="input-error"
+		*ngIf="checkMax() && !hideErrors">
+		{{"errors.max" | translate}} ({{this.control.errors?.max?.max}} /
+		{{this.control.errors?.max?.actual}})
+	</small>
+
+	<small class="input-error"
+		*ngIf="checkNotMatching() && !hideErrors">
+		{{"errors.notmatchingpassword" | translate}}
+	</small>
+</ng-container> -->
 
 
 <!--add remaining error messages-->

@@ -19,11 +19,15 @@
 
 // .input-error {
 // 	border: 2px solid $danger-color;
-
+// }
 // 	&:focus {
 // 		border-bottom: 2px solid $danger-color;
 // 	}
 // }
+
+mat-form-field {
+	width: 100%;
+}
 
 .app-link {
 	text-decoration: none;
