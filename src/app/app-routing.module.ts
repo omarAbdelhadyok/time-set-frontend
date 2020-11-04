@@ -5,7 +5,18 @@ import { HomeComponent } from './home/components';
 import { BaseLayoutComponent, SiteLayoutComponent } from './layouts';
 
 
-const routes: Routes = [
+const routes: Routes = [{
+		path: '',
+		component: SiteLayoutComponent,
+		children: [
+			{ path: '', redirectTo: '/home', pathMatch: 'full' },
+			{ path: 'home', component: HomeComponent },
+			{
+				path: 'projects',
+				loadChildren: () => import('./projects/projects.module').then(m => m.ProjectsModule)
+			}
+		]
+	},
 	{
 		path: '',
 		component: BaseLayoutComponent,
@@ -17,18 +28,7 @@ const routes: Routes = [
 			}
 		]
 	},
-	{
-		path: '',
-		component: SiteLayoutComponent,
-		children: [
-			{ path: '', redirectTo: '/home', pathMatch: 'full' },
-			{ path: 'home', component: HomeComponent },
-			{
-				path: 'projects',
-				loadChildren: () => import('./projects/projects.module').then(m => m.ProjectsModule)
-			}
-		]
-	}
+	
 ];
 
 @NgModule({
