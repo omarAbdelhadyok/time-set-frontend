@@ -24,7 +24,7 @@ export class DashboardComponent implements OnInit {
 	getProjects() {
 		this.projectsService.getAll().subscribe(pageable => {
 			this.projects = pageable.content;
-			if(this.projects.length > 0) {
+			if(this.projects?.length > 0) {
 				this.noData = false;
 			} else {
 				this.noData = true;

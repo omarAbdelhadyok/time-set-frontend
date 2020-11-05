@@ -8,17 +8,6 @@ import { BaseLayoutComponent, SiteLayoutComponent } from './layouts';
 const routes: Routes = [
 	{
 		path: '',
-		component: BaseLayoutComponent,
-		children: [
-			{
-				path: 'auth',
-				loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule),
-				canActivate: [LoggedInGuard]
-			}
-		]
-	},
-	{
-		path: '',
 		component: SiteLayoutComponent,
 		children: [
 			{ path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -28,7 +17,19 @@ const routes: Routes = [
 				loadChildren: () => import('./projects/projects.module').then(m => m.ProjectsModule)
 			}
 		]
-	}
+	},
+	{
+		path: '',
+		component: BaseLayoutComponent,
+		children: [
+			{
+				path: 'auth',
+				loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule),
+				canActivate: [LoggedInGuard]
+			}
+		]
+	},
+	
 ];
 
 @NgModule({

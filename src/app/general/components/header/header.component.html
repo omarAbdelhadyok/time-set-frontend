@@ -1,16 +1,18 @@
 <mat-toolbar>
-	<a href="#"
-		class="logo">
+	<a href="#" class="logo">
 		<mat-icon>alarm</mat-icon>
 		<span>Time Management</span>
 	</a>
-	<button mat-button
-		class="example-icon favorite-icon">
+	<button mat-button routerLink="projects/dashboard" class="example-icon favorite-icon">
 		Home
 	</button>
 	<span class="spacer"></span>
-	<button mat-icon-button
-		class="example-icon">
+	<button mat-icon-button [matMenuTriggerFor]="menu" class="example-icon">
 		<mat-icon>person</mat-icon>
 	</button>
+	<mat-menu #menu="matMenu">
+		<button *ngIf="!isLoggedIn"  routerLink="/auth/sign-in"  mat-menu-item>sign in</button>
+		<button  *ngIf="!isLoggedIn"  routerLink="/auth/register"  mat-menu-item>sign up</button>
+		<button  *ngIf="isLoggedIn"  (click)="logOut()"   mat-menu-item>sign out</button>
+	  </mat-menu>
 </mat-toolbar>

@@ -1,6 +1,6 @@
 <h2 class="m-0">Projects</h2>
 
-<div *ngIf="projects.length > 0"
+<div *ngIf="projects?.length > 0"
 	class="projects-holder">
 
 	<mat-card class="card"
@@ -24,7 +24,7 @@
 
 </div>
 
-<div *ngIf="projects.length == 0 && noData == true"
+<div *ngIf="projects?.length == 0 && noData == true"
 	class="text-center">
 	{{displayedMsgKey | translate}}
 </div>

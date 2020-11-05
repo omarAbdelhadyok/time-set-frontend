@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { SignInCredentials, SignInResponse } from 'src/app/auth/shared';
 import { User } from 'src/app/user/models';
@@ -13,7 +14,7 @@ export class AuthService {
 	private baseUrl = environment.baseUrl + '/auth';
 	private tokenKey = 'token';
 
-	constructor(private http: HttpClient) { }
+	constructor(private http: HttpClient , private router:Router) { }
 
 
 	signIn(signInCredentials: SignInCredentials): Observable<SignInResponse> {
@@ -24,6 +25,11 @@ export class AuthService {
 	register(user: User): Observable<SignInResponse> {
 		let url = this.baseUrl + '/signup';
 		return this.http.post<SignInResponse>(url, user);
+	}
+	
+	logout(){
+		localStorage.removeItem(this.tokenKey);
+		this.router.navigate(["/auth/sign-in"]);
 	}
 
 	isLoggedIn() {
