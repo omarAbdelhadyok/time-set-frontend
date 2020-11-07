@@ -12,10 +12,13 @@
 	<mat-error *ngIf="checkRequired() && !hideErrors">
 		{{"errors.required" | translate}}
 	</mat-error>
+	<mat-error *ngIf="checkPattern() && !hideErrors">
+		{{"errors.pattern" | translate}}
+	</mat-error>
 
 	<mat-error *ngIf="checkMinLength() && !hideErrors">
-		{{"errors.minlength" | translate}} ({{control.errors?.minlength?.requiredLength}} /
-		{{control.errors?.minlength?.actualLength}})
+		{{"errors.minlength" }} ({{this.control.errors?.minlength?.requiredLength}} /
+		{{this.control.errors?.minlength?.actualLength}})
 	</mat-error>
 
 	<mat-error *ngIf="checkMaxLength() && !hideErrors">
