@@ -32,7 +32,7 @@ const routes: Routes = [{
 ];
 
 @NgModule({
-	imports: [RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules, initialNavigation: 'enabled' })],
+	imports: [RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules, initialNavigation: 'enabled', relativeLinkResolution: 'legacy' })],
 	exports: [RouterModule]
 })
 export class AppRoutingModule { }
