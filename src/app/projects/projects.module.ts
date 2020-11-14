@@ -9,7 +9,7 @@ import { ProjectPageComponent } from './project-page/project-page.component';
 import { CardsService, ProjectsService, StacksService } from './shared/services';
 import { MaterialModule } from '../material/material.module';
 import { CardModalComponent, DeleteConfirmComponent } from './shared/components';
-import { ProjectAddEditDialogComponent } from './project-page/project-add-edit-dialog/project-add-edit-dialog.component';
+import { ProjectAddEditDialogComponent } from './dashboard/project-add-edit-dialog/project-add-edit-dialog.component';
 
 @NgModule({
 	declarations: [
@@ -22,9 +22,9 @@ import { ProjectAddEditDialogComponent } from './project-page/project-add-edit-d
 	],
 	imports: [
 		CommonModule,
-		ProjectsRoutingModule,
 		SharedModule,
-		MaterialModule
+		MaterialModule,
+		ProjectsRoutingModule
 	],
 	providers: [ProjectsService, CardsService, StacksService]
 })

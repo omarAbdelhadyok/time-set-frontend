@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Project } from '../shared/models';
 import { ProjectsService } from '../shared/services';
+import { ProjectAddEditDialogComponent } from './project-add-edit-dialog/project-add-edit-dialog.component';
 
 @Component({
 	selector: 'app-dashboard',
@@ -15,7 +17,8 @@ export class DashboardComponent implements OnInit {
 	displayedMsgKey: string;
 
 	constructor(private projectsService: ProjectsService,
-		private router: Router) { }
+		private router: Router,
+		private dialog: MatDialog) { }
 
 	ngOnInit(): void {
 		this.getProjects();
@@ -39,5 +42,11 @@ export class DashboardComponent implements OnInit {
 
 	viewProject(projectId: number) {
 		this.router.navigate([`/projects/view/${projectId}`]);
+	}
+
+	openAddProjectModal() {
+		this.dialog.open(ProjectAddEditDialogComponent, {
+			width: '40%'
+		})
 	}
 }
