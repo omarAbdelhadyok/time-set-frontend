@@ -1,6 +1,15 @@
-<h2 class="m-0">Projects</h2>
-<app-project-add-edit></app-project-add-edit>
-<!-- <mat-divider></mat-divider> -->
+<nav class="projects-nav">
+	<h2 class="m-0">
+		Projects
+	</h2>
+
+	<div class="add-project-btn">
+		<button mat-button
+			(click)="openAddProjectModal()">
+			Add Project
+		</button>
+	</div>
+</nav>
 
 <div *ngIf="projects?.length > 0"
 	class="projects-holder">

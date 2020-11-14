@@ -35,7 +35,6 @@ export class ProjectAddEditDialogComponent implements OnInit {
             this.isEdit = false;
         }
         this.createForm()
-        
     }
     createForm(): void {
 		this.projectForm = this.fb.group({
