@@ -5,7 +5,7 @@ import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { MaterialModule } from '../material/material.module';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { SpinnerOverlayComponent } from './components';
-import { SpinnerInterceptor } from './interceptors';
+import { SpinnerInterceptor, UniversalInterceptor } from './interceptors';
 
 @NgModule({
 	declarations: [
@@ -30,7 +30,12 @@ import { SpinnerInterceptor } from './interceptors';
 			provide: HTTP_INTERCEPTORS,
 			useClass: SpinnerInterceptor,
 			multi: true
-		}
+		},
+		{
+			provide: HTTP_INTERCEPTORS,
+			useClass: UniversalInterceptor,
+			multi: true,
+		},
 	]
 })
 export class CoreModule {
