@@ -12,9 +12,11 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatDividerModule } from '@angular/material/divider';
 
 
 const MODULES = [
+	MatDividerModule,
 	CommonModule,
 	MatProgressSpinnerModule,
 	MatToolbarModule,
