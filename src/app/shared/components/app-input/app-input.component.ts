@@ -52,12 +52,15 @@ export class AppInputComponent implements ControlValueAccessor {
 		this.formControlDirective.valueAccessor.setDisabledState(isDisabled);
 	}
 
-
+	
 	checkErrors() {
 		return this.control.errors && this.checkDirty();
 	}
 	checkRequired() {
 		return this.control.errors?.required && this.checkDirty();
+	}
+	checkPattern(){
+		return this.control.errors?.pattern && this.checkDirty();
 	}
 	checkMinLength() {
 		return this.control.errors?.minlength && this.checkDirty();

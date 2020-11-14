@@ -21,7 +21,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
 @NgModule({
 	declarations: [AppComponent, BaseLayoutComponent, SiteLayoutComponent],
 	imports: [
-		BrowserModule,
+		BrowserModule.withServerTransition({ appId: 'serverApp' }),
 		HomeModule,
 		AppRoutingModule,
 		TranslateModule.forRoot({

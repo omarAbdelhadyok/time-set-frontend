@@ -9,17 +9,17 @@ import { SpinnerOverlayComponent } from '../components';
 	providedIn: 'root'
 })
 export class SpinnerOverlayService {
-	
+
 	private overlayRef: OverlayRef = undefined;
 
 	public readonly spinner$ = defer(() => {
 		this.show();
 		return NEVER.pipe(
-		  finalize(() => {
-			this.hide();
-		  })
+			finalize(() => {
+				this.hide();
+			})
 		);
-	  }).pipe(share());
+	}).pipe(share());
 
 	constructor(private overlay: Overlay) { }
 
@@ -41,7 +41,10 @@ export class SpinnerOverlayService {
 	}
 
 	public hide(): void {
-		this.overlayRef.detach();
-		this.overlayRef = undefined;
+		if (this.overlayRef) {
+			this.overlayRef.detach();
+			this.overlayRef = undefined;
+		}
+
 	}
 }
