@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Project } from '../shared/models';
 import { ProjectsService } from '../shared/services';
 import { ProjectAddEditDialogComponent } from './project-add-edit-dialog/project-add-edit-dialog.component';
@@ -18,7 +18,8 @@ export class DashboardComponent implements OnInit {
 
 	constructor(private projectsService: ProjectsService,
 		private router: Router,
-		private dialog: MatDialog) { }
+		private dialog: MatDialog,
+		private route: ActivatedRoute) { }
 
 	ngOnInit(): void {
 		this.getProjects();
@@ -27,7 +28,7 @@ export class DashboardComponent implements OnInit {
 	getProjects() {
 		this.projectsService.getAll().subscribe(pageable => {
 			this.projects = pageable.content;
-			if(this.projects?.length > 0) {
+			if (this.projects?.length > 0) {
 				this.noData = false;
 			} else {
 				this.noData = true;
@@ -46,7 +47,8 @@ export class DashboardComponent implements OnInit {
 
 	openAddProjectModal() {
 		this.dialog.open(ProjectAddEditDialogComponent, {
-			width: '40%'
+			width: '40%',
+
 		})
 	}
 }

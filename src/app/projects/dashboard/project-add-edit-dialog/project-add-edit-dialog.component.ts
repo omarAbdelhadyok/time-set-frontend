@@ -14,21 +14,20 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class ProjectAddEditDialogComponent implements OnInit {
 
     project: Project;
-    projectForm:FormGroup;
-    projectId: number=null;
+    projectForm: FormGroup;
+    projectId: number = null;
     isEdit: boolean;
-    busySaving: boolean;
-	isLoading: boolean = false;
+    busySaving: boolean  ;
+    isLoading: boolean = false;
 
 
-    constructor(private fb: FormBuilder,public dialogRef: MatDialogRef<ProjectAddEditDialogComponent>,
-        @Inject(MAT_DIALOG_DATA) public data: {projectId: number},
+    constructor(private fb: FormBuilder, public dialogRef: MatDialogRef<ProjectAddEditDialogComponent>,
+        @Inject(MAT_DIALOG_DATA) public data: { projectId: number },
         private projectsService: ProjectsService,
         private router: Router) { }
 
     ngOnInit(): void {
-        this.project = new Project();
-        if(this.data?.projectId) {
+        if (this.data?.projectId) {
             this.isEdit = true;
             this.projectId = this.data.projectId;
         } else {
@@ -37,22 +36,25 @@ export class ProjectAddEditDialogComponent implements OnInit {
         this.createForm()
     }
     createForm(): void {
-		this.projectForm = this.fb.group({
-			title: ['', [Validators.required, Validators.maxLength(15)]],
-			description: ['', [Validators.required, Validators.maxLength(100)]]
-		})
-	}
+        this.projectForm = this.fb.group({
+            title: ['', [Validators.required, Validators.maxLength(15)]],
+            description: ['', [Validators.required, Validators.maxLength(100)]]
+        })
+    }
 
     save(): void {
-        if(this.isEdit) {
-            // this.update(this.projectId, this.project);
+        let project = new Project(this.projectForm.value);
+
+        if (this.isEdit) {
+            this.update(this.projectId, project);
         } else {
-            this.create(this.project);
+            this.create(project);
         }
     }
 
     create(project: Project): void {
         this.busySaving = true;
+
         this.projectsService.create(project).subscribe(projectRes => {
             this.busySaving = false;
             this.dialogRef.close(projectRes);
@@ -60,14 +62,15 @@ export class ProjectAddEditDialogComponent implements OnInit {
             this.busySaving = false;
         });
     }
+    get f() { return this.projectForm.controls; }
 
-    // update(projectId: number, project: Project): void {
-    //     this.busySaving = true;
-    //     this.projectsService.update(projectId,project).subscribe(projectRes => {
-    //         this.busySaving = false;
-    //         this.dialogRef.close(projectRes);
-    //     }, error => {
-    //         this.busySaving = false;
-    //     });
-    // }
+    update(projectId: number, project: Project): void {
+        this.busySaving = true;
+        this.projectsService.update(projectId, project).subscribe(projectRes => {
+            this.busySaving = false;
+            this.dialogRef.close(projectRes);
+        }, error => {
+            this.busySaving = false;
+        });
+    }
 }
