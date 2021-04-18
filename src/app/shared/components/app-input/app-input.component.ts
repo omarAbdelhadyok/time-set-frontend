@@ -1,5 +1,5 @@
 import { Component, EventEmitter, forwardRef, Input, Output, ViewChild } from '@angular/core';
-import { ControlContainer, ControlValueAccessor, FormControlDirective, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { AbstractControl, ControlContainer, ControlValueAccessor, FormControlDirective, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { MatFormFieldAppearance } from '../../enums';
 
 @Component({
@@ -17,7 +17,7 @@ import { MatFormFieldAppearance } from '../../enums';
 export class AppInputComponent implements ControlValueAccessor {
 
 	@ViewChild(FormControlDirective, { static: true }) formControlDirective: FormControlDirective;
-	@Input() appearance: string = MatFormFieldAppearance.LEGACY;
+	@Input() appearance: MatFormFieldAppearance = MatFormFieldAppearance.LEGACY;
 	@Input() type: string;
 	@Input() label: string;
 	@Input() placeholder: string;
@@ -30,7 +30,7 @@ export class AppInputComponent implements ControlValueAccessor {
 	focus = false;
 
 	/* get hold of FormControl instance no matter formControl or formControlName is given. If formControlName is given, then this.controlContainer.control is the parent FormGroup (or FormArray) instance. */
-	get control() {
+	get control(): AbstractControl {
 		return this.controlContainer.control.get(this.formControlName);
 	}
 

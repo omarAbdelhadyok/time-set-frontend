@@ -1,64 +1,65 @@
-<div *ngIf="project "
-	class="stacks-container">
+<div class="stacks-container">
 
-	<div *ngFor="let stack of project.stacks; index as i"
-		class="stack card">
-
-		<form [formGroup]="editStackForms">
-			<div formArrayName="stackForms">
-				<div [formGroupName]="i">
-					<app-input [label]="'forms.title' | translate"
-						[placeholder]="'forms.title' | translate"
-						formControlName="title"
-						[isLable]="true"
-						[hideErrors]="true"
-						(blur)="updateStack(stack, i)">
-					</app-input>
-				</div>
-			</div>
-		</form>
-
-		<div class="cards-box">
-			<div *ngFor="let card of stack?.cards; index as cardIndex"
-				class="card-viewer"
-				(click)="openCardModal(card, cardIndex)">
-				<p class="m-0">{{card.title}}</p>
-			</div>
-		</div>
-
-		<form [formGroup]="newCardForms"
-			class="new-card"
-			(ngSubmit)="createCard(i)">
-			<div formArrayName="cardForms">
-				<div [formGroupName]="i">
-					<app-input [label]="'forms.title' | translate"
-						[placeholder]="'forms.title' | translate"
-						formControlName="title"
-						[hideErrors]="true">
-					</app-input>
-
-					<div class="mt-2">
-						<button mat-flat-button
-							color="accent"
-							[disabled]="creatingCard && cardForms['controls'][i].valid">
-							{{'labels.addCard' | translate}}
-							<mat-spinner *ngIf="creatingCard && cardForms['controls'][i].valid"
-								class="d-inline-block"
-								diameter="20">
-							</mat-spinner>
-						</button>
+	<ng-container *ngIf="project?.stacks.length > 0">
+		<div *ngFor="let stack of project.stacks; index as i"
+			class="stack card">
+	
+			<form [formGroup]="editStackForms">
+				<div formArrayName="stackForms">
+					<div [formGroupName]="i">
+						<app-input [label]="'forms.title' | translate"
+							[placeholder]="'forms.title' | translate"
+							formControlName="title"
+							[isLable]="true"
+							[hideErrors]="true"
+							(blur)="updateStack(stack, i)">
+						</app-input>
 					</div>
 				</div>
+			</form>
+	
+			<div class="cards-box">
+				<div *ngFor="let card of stack?.cards; index as cardIndex"
+					class="card-viewer"
+					(click)="openCardModal(card, cardIndex)">
+					<p class="m-0">{{card.title}}</p>
+				</div>
 			</div>
-		</form>
-
-		<div class="action-box">
-			<button class="action-btn"
-				(click)="deleteStack(stack, i)">
-				Delete
-			</button>
+	
+			<form [formGroup]="newCardForms"
+				class="new-card"
+				(ngSubmit)="createCard(i)">
+				<div formArrayName="cardForms">
+					<div [formGroupName]="i">
+						<app-input [label]="'forms.title' | translate"
+							[placeholder]="'forms.title' | translate"
+							formControlName="title"
+							[hideErrors]="true">
+						</app-input>
+	
+						<div class="mt-2">
+							<button mat-flat-button
+								color="accent"
+								[disabled]="creatingCard && cardForms['controls'][i].valid">
+								{{'labels.addCard' | translate}}
+								<mat-spinner *ngIf="creatingCard && cardForms['controls'][i].valid"
+									class="d-inline-block"
+									diameter="20">
+								</mat-spinner>
+							</button>
+						</div>
+					</div>
+				</div>
+			</form>
+	
+			<div class="action-box">
+				<button class="action-btn"
+					(click)="deleteStack(stack, i)">
+					Delete
+				</button>
+			</div>
 		</div>
-	</div>
+	</ng-container>
 
 	<form [formGroup]="newStackForm"
 		class="stack card new-stack"
@@ -75,7 +76,7 @@
 			<button mat-flat-button
 				color="accent"
 				[disabled]="creatingStack && newStackForm.invalid">
-				{{'labels.addStack' | translate}}
+				{{'labels.createStack' | translate}}
 				<mat-spinner *ngIf="creatingStack"
 					class="d-inline-block"
 					diameter="20">
@@ -84,3 +85,9 @@
 		</div>
 	</form>
 </div>
+
+
+<!-- <div *ngIf="project?.stacks.length == 0"
+	class="text-center">
+	{{displayedMsgKey | translate}}
+</div> -->

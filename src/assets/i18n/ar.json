@@ -2,13 +2,32 @@
 	"labels": {
 		"signin": "تسجيل الدخول",
 		"register": "التسجيل",
-		"noProjects": "لا توجد مشاريع بعد"
+		"projects": "المشاريع",
+		"noProjects": "لا توجد مشاريع بعد",
+		"noStacks": "لا يوجد قوائم بعد",
+		"addProject": "إضافة مشروع",
+		"createProject": "إنشاط مشروع",
+		"addStack": "Add Stack",
+		"createStack": "Create Stack",
+		"addCard": "Add Card",
+		"editStack": "Edit Stack",
+		"editCard": "تعديل البطاقة",
+		"discard": "إلغاء",
+		"view": "عرض",
+		"delete": "حذف"
+	},
+	"forms": {
+		"title": "العنوان",
+		"description": "الوصف"
 	},
 	"errors": {
 		"app": "حدث خطأ ما",
 		"required": "هذا الحقل مطلوب",
 		"maxlength": "القيمة المدخلة تتعدى الحد المسموح",
 		"minlength": "القيمة أقل من الحد الأدني"
+	},
+	"warnings": {
+		"discardChanges": "هل انت متأكد أنك تريد إلغاء التعديلات"
 	}
 }
   

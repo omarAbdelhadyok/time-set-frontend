@@ -1,12 +1,12 @@
 <nav class="projects-nav">
 	<h2 class="m-0">
-		Projects
+		{{'labels.projects' | translate}}
 	</h2>
 
 	<div class="add-project-btn">
 		<button mat-button
-			(click)="openAddProjectModal()">
-			Add Project
+			(click)="addProject()">
+			{{'labels.addProject' | translate}}
 		</button>
 	</div>
 </nav>
@@ -14,8 +14,12 @@
 <div *ngIf="projects?.length > 0"
 	class="projects-holder">
 
+	<!-- [ngStyle]="{
+		background: project.img? 'url(/Users/omarabdelhady/Desktop/Backend/time-management/uploads/' + project.img + ') no-repeat center center' : 'none',
+		backgroundSize: cover
+	}" -->
 	<mat-card class="card"
-		*ngFor="let project of projects">
+		*ngFor="let project of projects; index as i">
 		<mat-card-header>
 			<mat-card-title>
 				{{project.title}}
@@ -25,10 +29,37 @@
 			</mat-card-subtitle>
 		</mat-card-header>
 		<mat-card-actions>
-			<button mat-flat-button
+			<!-- <button mat-stroked-button
 				color="primary"
 				(click)="viewProject(project.id)">
-				View
+				{{'labels.view' | translate}}
+			</button> -->
+			
+			<!-- <button mat-stroked-button
+				color="warn"
+				class="ml-2 mr-2"
+				(click)="deleteProject(project, i)">
+				{{'labels.delete' | translate}}
+			</button> -->
+			<button mat-icon-button
+				color="primary"
+				class="card-btn"
+				(click)="viewProject(project.id)">
+				<mat-icon>open_in_new</mat-icon>
+			</button>
+
+			<button mat-icon-button
+				color="accent"
+				class="card-btn mr-1 ml-1"
+				(click)="editProject(project.id, i)">
+				<mat-icon>edit</mat-icon>
+			</button>
+
+			<button mat-icon-button
+				color="warn"
+				class="card-btn mr-1 ml-1"
+				(click)="deleteProject(project, i)">
+				<mat-icon>delete</mat-icon>
 			</button>
 		</mat-card-actions>
 	</mat-card>

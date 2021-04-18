@@ -19,12 +19,13 @@ export class ProjectsService {
 	get(projectId: number): Observable<Project> {
 		return this.http.get<Project>(`${this.baseUrl}/${projectId}`);
 	}
+	
 	create(project: Project): Observable<Project> {
         return this.http.post<Project>(this.baseUrl, project);
     }
 
-    update(id: number, project: Project): Observable<Project> {
-        return this.http.put<Project>(this.baseUrl + `/${id}`, project);
+    update(projectId: number, project: Project): Observable<Project> {
+        return this.http.put<Project>(this.baseUrl + `/${projectId}`, project);
     }
 
     delete(id: number){

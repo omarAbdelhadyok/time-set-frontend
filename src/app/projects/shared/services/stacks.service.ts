@@ -11,8 +11,8 @@ export class StacksService {
 
 	constructor(private http: HttpClient) { }
 
-	create(projectId: number, stack: Stack): Observable<Stack> {
-		return this.http.post<Stack>(`${this.baseUrl}/${projectId}`, stack);
+	create(stack: Stack): Observable<Stack> {
+		return this.http.post<Stack>(`${this.baseUrl}`, stack);
 	}
 
 	update(stack: Stack): Observable<Stack> {
