@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Stack } from '../models';
+import { Stack } from '../../models';
 
 @Injectable()
 export class StacksService {
@@ -11,7 +11,7 @@ export class StacksService {
 
 	constructor(private http: HttpClient) { }
 
-	create(projectId: number, stack: Stack): Observable<Stack> {
+	create(stack: Stack, projectId: number): Observable<Stack> {
 		return this.http.post<Stack>(`${this.baseUrl}/${projectId}`, stack);
 	}
 

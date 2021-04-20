@@ -1,11 +1,17 @@
 export class PaginationSortingParams {
 
-	public constructor(init?: Partial<PaginationSortingParams>) {
-        Object.assign(this, init);
-	}
+	page: number;
+	size: number;
+	sort: string;
 
-	pageNumber: number;
-	pageSize: number;
-	sortColumn: string;
-	sorDirection: 'ASC' | 'DESC';
+	public static setParams(pageNumber: number,
+		pageSize: number,
+		sortColumn: string,
+		sortDirection: string): PaginationSortingParams {
+			let params = new PaginationSortingParams();
+			params.page = pageNumber;
+			params.size = pageSize;
+			params.sort = `${sortColumn},${sortDirection}`;
+			return params;
+	}
 }

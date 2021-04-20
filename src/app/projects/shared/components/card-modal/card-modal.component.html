@@ -62,8 +62,8 @@
 		(ngSubmit)="createTask()">
 
 		<app-input class="col-12 col-md-6"
-			[label]="'forms.task' | translate"
-			[placeholder]="'forms.task' | translate"
+			label="Task"
+			placeholder="Task"
 			formControlName="task">
 		</app-input>
 
@@ -78,7 +78,7 @@
 			<button mat-flat-button
 				color="accent"
 				[disabled]="busyCreatingTask || newTaskForm.invalid">
-				{{'labels.addTask' | translate}}
+				Add Task
 				<mat-spinner *ngIf="busyCreatingTask"
 					class="d-inline-block"
 					diameter="20">

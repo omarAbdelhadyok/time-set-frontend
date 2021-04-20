@@ -1,23 +1,25 @@
 <h2>{{isEdit? 'Edit Project' : 'Add Project'}}</h2>
 
-
-<form [formGroup]="projectForm" (ngSubmit)="save()">
-	<app-input class="mt-3"
-		[label]="'description' | translate"
-		[placeholder]="'description' | translate"
-		formControlName="description">
-	</app-input>
-
-	<app-input class="mt-3"
-		[label]="'title' | translate"
-		[placeholder]="'title' | translate"
+<form [formGroup]="projectForm">
+	<app-input class="mt-3 d-block"
+		label="Title"
+		placeholder="Title"
 		formControlName="title">
 	</app-input>
 
+	<app-input class="mt-3 d-block"
+		label="Description"
+		placeholder="Description"
+		formControlName="description">
+	</app-input>
+	
 	<button mat-flat-button
 		color="accent"
-		[disabled]="busySaving && projectForm.invalid">
-		{{'labels.addStack' | translate}}
+		class="mt-3"
+		[disabled]="busySaving || projectForm.invalid"
+		(click)="save()">
+		<span *ngIf="!isEdit">Create Project</span>
+		<span *ngIf="isEdit">Edit Project</span>
 		<mat-spinner *ngIf="busySaving"
 			class="d-inline-block"
 			diameter="20">

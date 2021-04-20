@@ -5,8 +5,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NotifierService } from 'src/app/core/services';
 import { CardModalComponent, DeleteConfirmComponent } from '../shared/components';
-import { Card, Project, Stack } from '../shared/models';
+import { Card, Project, Stack } from '../models';
 import { CardsService, ProjectsService, StacksService } from '../shared/services';
+
 
 @Component({
 	selector: 'app-project-page',
@@ -175,10 +176,11 @@ export class ProjectPageComponent implements OnInit {
 		}
 		let stack = new Stack(this.newStackForm.value);
 		this.creatingStack = true;
-		this.stacksService.create(this.project.id, stack).subscribe(stack => {
+		this.stacksService.create(stack, this.project.id).subscribe(stack => {
 			this.project.stacks.push(stack);
 			this.creatingStack = false;
 			this.addNewCardForm();
+			this.addEditStackForm(stack.title);
 			this.newStackForm.reset();
 		}, err => {
 			this.creatingStack = false;

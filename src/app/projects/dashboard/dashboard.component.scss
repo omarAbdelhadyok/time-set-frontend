@@ -9,12 +9,25 @@
 	}
 }
 
+.spacer {
+	flex: 1 1 auto;
+}
+
+.pagination-toolbar {
+	.page-select, .size-select {
+		width: 60px;
+		font-size: 15px;
+	}
+}
+
+
 .projects-holder {
 	display: flex;
 	flex-wrap: wrap;
 
 	.card {
 		width: 300px;
+		position: relative;
 
 		&::ng-deep .mat-card-header-text {
 			margin: 0px;
@@ -23,6 +36,14 @@
 		&::ng-deep .mat-card-actions {
 			margin: 0;
 			padding: 0;
+		}
+
+		.card-btn {
+			cursor: pointer;
+
+			&:hover {
+				opacity: 0.8;
+			}
 		}
 	}
 }

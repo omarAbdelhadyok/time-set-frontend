@@ -2,21 +2,34 @@
 	"labels": {
 		"signin": "Sign In",
 		"register": "Register",
+		"projects": "Projects",
 		"noProjects": "No Projects yet ...",
-
-		"createStack": "Create Stack",
+		"noStacks": "No Stacks yet ...",
+		"addProject": "Add Project",
+		"createProject": "Create Project",
 		"addStack": "Add Stack",
+		"createStack": "Create Stack",
 		"addCard": "Add Card",
 		"editStack": "Edit Stack",
-		"editCard": "Edit Card"
+		"editCard": "Edit Card",
+		"discard": "Discard",
+		"view": "View",
+		"delete": "Delete",
+		"cancel": "Cancel",
+		"confirm": "Confirm"
 	},
 	"forms": {
-		"title": "Title"
+		"title": "Title",
+		"description": "Description"
 	},
 	"errors": {
 		"app": "Something went wrong",
 		"required": "Field is required",
 		"maxlength": "Value is too long",
 		"minlength": "Value is too short"
+	},
+	"warnings": {
+		"discardChanges": "Are you sure you want to discard changes?",
+		"delete": "Are you sure you want to delete: "
 	}
 }

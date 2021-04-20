@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
@@ -13,7 +13,8 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDividerModule } from '@angular/material/divider';
-
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSelectModule } from '@angular/material/select';
 
 const MODULES = [
 	MatDividerModule,
@@ -24,12 +25,14 @@ const MODULES = [
 	MatIconModule,
 	MatCardModule,
 	MatFormFieldModule,
+	MatSelectModule,
 	MatInputModule,
 	MatMenuModule,
 	MatDialogModule,
 	MatProgressBarModule,
 	MatExpansionModule,
-	MatTooltipModule
+	MatTooltipModule,
+	MatSnackBarModule
 ]
 
 @NgModule({
@@ -39,6 +42,9 @@ const MODULES = [
 	],
 	exports: [
 		...MODULES
+	],
+	schemas: [
+		CUSTOM_ELEMENTS_SCHEMA
 	]
 })
 export class MaterialModule { }

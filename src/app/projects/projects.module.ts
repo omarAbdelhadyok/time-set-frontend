@@ -6,10 +6,11 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProjectsComponent } from './projects.component';
 import { SharedModule } from '../shared/shared.module';
 import { ProjectPageComponent } from './project-page/project-page.component';
-import { CardsService, ProjectsService, StacksService } from './shared/services';
+import { CardsService, ProjectsService, StacksService, TasksService } from './shared/services';
 import { MaterialModule } from '../material/material.module';
 import { CardModalComponent, DeleteConfirmComponent } from './shared/components';
 import { ProjectAddEditDialogComponent } from './dashboard/project-add-edit-dialog/project-add-edit-dialog.component';
+
 
 @NgModule({
 	declarations: [
@@ -26,6 +27,6 @@ import { ProjectAddEditDialogComponent } from './dashboard/project-add-edit-dial
 		MaterialModule,
 		ProjectsRoutingModule
 	],
-	providers: [ProjectsService, CardsService, StacksService]
+	providers: [ProjectsService, CardsService, StacksService, TasksService]
 })
 export class ProjectsModule { }

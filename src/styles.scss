@@ -109,3 +109,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 	margin: 0;
 	padding: 0;
 }
+
+.danger-message {
+	color: $danger-color;
+}
+
+.white-snackbar {
+	background-color: #fff;
+}
