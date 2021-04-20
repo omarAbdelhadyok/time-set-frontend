@@ -9,6 +9,18 @@
 	}
 }
 
+.spacer {
+	flex: 1 1 auto;
+}
+
+.pagination-toolbar {
+	.page-select, .size-select {
+		width: 60px;
+		font-size: 15px;
+	}
+}
+
+
 .projects-holder {
 	display: flex;
 	flex-wrap: wrap;

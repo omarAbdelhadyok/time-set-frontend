@@ -4,11 +4,11 @@ import { FormGroup } from '@angular/forms';
 @Injectable({
 	providedIn: 'root'
 })
-export class FormUtilityService {
+export class FormUtils {
 
 	constructor() { }
 
-	isFormEmpty(form: FormGroup): boolean {
+	public static isFormEmpty(form: FormGroup): boolean {
 		let isFormEmpty = true;
 		if (form.value) {
 			for (let key in form.value) {

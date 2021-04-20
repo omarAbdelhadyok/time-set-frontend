@@ -5,7 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NotifierService } from 'src/app/core/services';
 import { CardModalComponent, DeleteConfirmComponent } from '../shared/components';
-import { Card, Project, Stack } from '../shared/models';
+import { Card, Project, Stack } from '../models';
 import { CardsService, ProjectsService, StacksService } from '../shared/services';
 
 
@@ -174,22 +174,17 @@ export class ProjectPageComponent implements OnInit {
 			this.notifier.errorMessage('errors.fillForm');
 			return;
 		}
-		// let stack = new Stack(this.newStackForm.value);
-		// let stackDto = new DomainDto(stack);
-		// stackDto.projectId = this.project.id;
-		// this.stackAddEditHelper.setProjectRef(this.project);
-		// this.stackAddEditHelper.setSuccessCallback(this.addNewCardForm);
-		// this.stackAddEditHelper.setStackFormRef(this.newStackForm);
-		// this.stackAddEditHelper.create(stackDto);
-		// this.creatingStack = true;
-		// this.stacksService.create(stack, this.project.id).subscribe(stack => {
-		// 	this.project.stacks.push(stack);
-		// 	this.creatingStack = false;
-		// 	this.addNewCardForm();
-		// 	this.newStackForm.reset();
-		// }, err => {
-		// 	this.creatingStack = false;
-		// })
+		let stack = new Stack(this.newStackForm.value);
+		this.creatingStack = true;
+		this.stacksService.create(stack, this.project.id).subscribe(stack => {
+			this.project.stacks.push(stack);
+			this.creatingStack = false;
+			this.addNewCardForm();
+			this.addEditStackForm(stack.title);
+			this.newStackForm.reset();
+		}, err => {
+			this.creatingStack = false;
+		})
 	}
 
 	//create card

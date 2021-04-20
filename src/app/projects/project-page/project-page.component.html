@@ -7,8 +7,8 @@
 			<form [formGroup]="editStackForms">
 				<div formArrayName="stackForms">
 					<div [formGroupName]="i">
-						<app-input [label]="'forms.title' | translate"
-							[placeholder]="'forms.title' | translate"
+						<app-input label="Title"
+							placeholder="Title"
 							formControlName="title"
 							[isLable]="true"
 							[hideErrors]="true"
@@ -31,8 +31,8 @@
 				(ngSubmit)="createCard(i)">
 				<div formArrayName="cardForms">
 					<div [formGroupName]="i">
-						<app-input [label]="'forms.title' | translate"
-							[placeholder]="'forms.title' | translate"
+						<app-input label="Title"
+							placeholder="Title"
 							formControlName="title"
 							[hideErrors]="true">
 						</app-input>
@@ -41,7 +41,7 @@
 							<button mat-flat-button
 								color="accent"
 								[disabled]="creatingCard && cardForms['controls'][i].valid">
-								{{'labels.addCard' | translate}}
+								Add Card
 								<mat-spinner *ngIf="creatingCard && cardForms['controls'][i].valid"
 									class="d-inline-block"
 									diameter="20">
@@ -65,10 +65,10 @@
 		class="stack card new-stack"
 		(ngSubmit)="createStack()">
 		<h3 class="stack-title">
-			{{'labels.createStack' | translate}}
+			Create Stack
 		</h3>
-		<app-input [label]="'forms.title' | translate"
-			[placeholder]="'forms.title' | translate"
+		<app-input label="Title"
+			placeholder="Title"
 			formControlName="title"
 			[hideErrors]="true">
 		</app-input>
@@ -76,7 +76,7 @@
 			<button mat-flat-button
 				color="accent"
 				[disabled]="creatingStack && newStackForm.invalid">
-				{{'labels.createStack' | translate}}
+				Create Stack
 				<mat-spinner *ngIf="creatingStack"
 					class="d-inline-block"
 					diameter="20">

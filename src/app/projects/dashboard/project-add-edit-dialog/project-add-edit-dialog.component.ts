@@ -1,10 +1,10 @@
 import { Component, OnInit, Inject } from '@angular/core';
 
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Project } from '../../shared/models';
+import { Project } from '../../models';
 import { ProjectsService } from '../../shared/services';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { FormUtilityService, NotifierService, ValidationUtilityService } from 'src/app/core/services';
+import { FormUtils, NotifierService, ObjectUtils, ValidationUtilityService } from 'src/app/core/services';
 
 @Component({
     selector: 'app-project-add-edit',
@@ -14,6 +14,7 @@ import { FormUtilityService, NotifierService, ValidationUtilityService } from 's
 export class ProjectAddEditDialogComponent implements OnInit {
 
     project: Project;
+	projectBackup: Project;
     projectForm: FormGroup;
     projectId: number = null;
     isEdit: boolean;
@@ -26,8 +27,7 @@ export class ProjectAddEditDialogComponent implements OnInit {
         @Inject(MAT_DIALOG_DATA) public data: {projectId: number},
         private projectsService: ProjectsService,
 		private validationService: ValidationUtilityService,
-		private notifier: NotifierService,
-		private formUtil: FormUtilityService) {}
+		private notifier: NotifierService) {}
 
     ngOnInit(): void {
         this.project = new Project();
@@ -48,9 +48,10 @@ export class ProjectAddEditDialogComponent implements OnInit {
 	
 	get(projectId: number) {
 		this.projectsService.get(projectId).subscribe(projectRes => {
-			this.project = projectRes;
+			this.project = ObjectUtils.copy<Project>(projectRes);
+			this.projectBackup = ObjectUtils.copy<Project>(projectRes);
 			this.fillForm();
-		})
+		});
 	}
 
 	fillForm() {
@@ -70,7 +71,9 @@ export class ProjectAddEditDialogComponent implements OnInit {
 		this.dialogRef.disableClose = true;
 
 		this.dialogRef.backdropClick().subscribe(() => {
-			if(this.formUtil.isFormEmpty(this.projectForm)) {
+			this.project.title = this.projectForm.get('title').value;
+			this.project.description = this.projectForm.get('description').value;
+			if(FormUtils.isFormEmpty(this.projectForm) || ObjectUtils.isEqual<Project>(this.project, this.projectBackup)) {
 				this.dialogRef.close();
 			} else {
 				let notifierRef = this.notifier.warn('warnings.discardChanges', 'labels.discard');
@@ -85,7 +88,7 @@ export class ProjectAddEditDialogComponent implements OnInit {
 		this.validationService.validateForm(this.projectForm);
 		let project = new Project(this.projectForm.value);
         if(this.isEdit) {
-            this.update(this.projectId, this.project);
+            this.update(this.projectId, project);
         } else {
             this.create(project);
         }
@@ -105,8 +108,10 @@ export class ProjectAddEditDialogComponent implements OnInit {
 	}
 
     update(projectId: number, project: Project): void {
+		this.project.title = project.title;
+		this.project.description = project.description;
         this.busySaving = true;
-        this.projectsService.update(projectId, project).subscribe(projectRes => {
+        this.projectsService.update(projectId, this.project).subscribe(projectRes => {
             this.busySaving = false;
             this.dialogRef.close(projectRes);
         },

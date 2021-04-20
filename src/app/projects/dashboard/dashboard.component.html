@@ -1,15 +1,48 @@
-<nav class="projects-nav">
+<mat-toolbar>
 	<h2 class="m-0">
-		{{'labels.projects' | translate}}
+		Projects
 	</h2>
+
+	<span class="spacer"></span>
 
 	<div class="add-project-btn">
 		<button mat-button
 			(click)="addProject()">
-			{{'labels.addProject' | translate}}
+			Add Project
 		</button>
 	</div>
-</nav>
+</mat-toolbar>
+
+<mat-toolbar class="pagination-toolbar">
+	<span class="spacer"></span>
+
+	<mat-form-field appearance="legacy"
+		*ngIf="totalPages > 1"
+		class="page-select mr-2">
+		<mat-label>Page</mat-label>
+		<mat-select [(ngModel)]="pageNumber"
+			name="pageNumber"
+			(ngModelChange)="getProjects()">
+			<mat-option *ngFor="let i of getPages()"
+				[value]="i">
+				{{i + 1}}
+			</mat-option>
+		</mat-select>
+	</mat-form-field>
+
+	<mat-form-field appearance="legacy"
+		class="size-select">
+		<mat-label>Size</mat-label>
+		<mat-select [(ngModel)]="pageSize"
+			name="pageNumber"
+			(ngModelChange)="getProjects()">
+			<mat-option [value]="5">5</mat-option>
+			<mat-option [value]="10">10</mat-option>
+			<mat-option [value]="15">15</mat-option>
+			<mat-option [value]="25">25</mat-option>
+		</mat-select>
+	</mat-form-field>
+</mat-toolbar>
 
 <div *ngIf="projects?.length > 0"
 	class="projects-holder">
@@ -28,19 +61,8 @@
 				{{project.description}}
 			</mat-card-subtitle>
 		</mat-card-header>
+
 		<mat-card-actions>
-			<!-- <button mat-stroked-button
-				color="primary"
-				(click)="viewProject(project.id)">
-				{{'labels.view' | translate}}
-			</button> -->
-			
-			<!-- <button mat-stroked-button
-				color="warn"
-				class="ml-2 mr-2"
-				(click)="deleteProject(project, i)">
-				{{'labels.delete' | translate}}
-			</button> -->
 			<button mat-icon-button
 				color="primary"
 				class="card-btn"
@@ -68,5 +90,5 @@
 
 <div *ngIf="projects?.length == 0 && noData == true"
 	class="text-center">
-	{{displayedMsgKey | translate}}
+	{{displayedMsg}}
 </div>

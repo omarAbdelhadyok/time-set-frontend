@@ -14,7 +14,9 @@
 		"editCard": "Edit Card",
 		"discard": "Discard",
 		"view": "View",
-		"delete": "Delete"
+		"delete": "Delete",
+		"cancel": "Cancel",
+		"confirm": "Confirm"
 	},
 	"forms": {
 		"title": "Title",

@@ -2,8 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { PageableResponse } from 'src/app/shared/models';
-import { Project } from '../models';
+import { PageableResponse, PaginationSortingParams } from 'src/app/shared/models';
+import { Project } from '../../models';
 
 @Injectable()
 export class ProjectsService {
@@ -12,8 +12,10 @@ export class ProjectsService {
 	
 	constructor(private http: HttpClient) { }
 
-	getAll(): Observable<PageableResponse<Project>> {
-		return this.http.get<PageableResponse<Project>>(this.baseUrl);
+	getAll(params: PaginationSortingParams): Observable<PageableResponse<Project>> {
+		return this.http.get<PageableResponse<Project>>(
+			`${this.baseUrl}?page=${params.page}&size=${params.size}&sort=${params.sort}`
+		);
 	}
 
 	get(projectId: number): Observable<Project> {
@@ -25,7 +27,8 @@ export class ProjectsService {
     }
 
     update(projectId: number, project: Project): Observable<Project> {
-        return this.http.put<Project>(this.baseUrl + `/${projectId}`, project);
+		project.id = projectId;
+        return this.http.put<Project>(this.baseUrl, project);
     }
 
     delete(id: number){

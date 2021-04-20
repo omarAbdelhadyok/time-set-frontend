@@ -14,7 +14,9 @@
 		"editCard": "تعديل البطاقة",
 		"discard": "إلغاء",
 		"view": "عرض",
-		"delete": "حذف"
+		"delete": "حذف",
+		"cancel": "إلغاء",
+		"confirm": "تأكيد"
 	},
 	"forms": {
 		"title": "العنوان",

@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { NotifierService } from 'src/app/core/services';
 import { StatusNames } from 'src/app/shared/enums';
-import { Card, Task } from '../../models';
+import { Card, Task } from '../../../models';
 import { TasksService } from '../../services';
 
 @Component({
